@@ -22,7 +22,7 @@ public class StageIconDataManager
 
     public List<StageIconData> stageDataList = new List<StageIconData>();
 
-    public int playMaxStageID;
+    //public int playMaxStageID;
     public int maxPage;
 
     private StageIconDataManager()
@@ -34,22 +34,22 @@ public class StageIconDataManager
     {
         stageDataList = new List<StageIconData>()
         {
-            new StageIconData(0, new Vector2(-346,-365) ,0),
-            new StageIconData(1, new Vector2(13,-646)   ,0),
-            new StageIconData(2, new Vector2(339,-342)  ,0),
-            new StageIconData(3, new Vector2(-36 ,102)  ,0),
-            new StageIconData(4, new Vector2(267,604)   ,0),
+            new StageIconData(0, new Vector2(-268.5f,-163.5f) ,0),
+            new StageIconData(1, new Vector2(-417f,319f)   ,0),
+            new StageIconData(2, new Vector2(0,588)  ,0),
+            new StageIconData(3, new Vector2(418 ,320)  ,0),
+            new StageIconData(4, new Vector2(269,-161)   ,0),
 
-            new StageIconData(5, new Vector2(-346,381)  ,1),
-            new StageIconData(6, new Vector2(-303,-193) ,1),
-            new StageIconData(7, new Vector2(-188,-767) ,1),
-            new StageIconData(8, new Vector2(328,-566)  ,1),
-            new StageIconData(9, new Vector2(228,-7)    ,1),
+            new StageIconData(5, new Vector2(-268.5f,-163.5f) ,1),
+            new StageIconData(6, new Vector2(-417f,319f)   ,1),
+            new StageIconData(7, new Vector2(0,588)  ,1),
+            new StageIconData(8, new Vector2(418 ,320)  ,1),
+            new StageIconData(9, new Vector2(269,-161)   ,1),
         };
         UserDataSet();
 
         maxPage = stageDataList.Max(data => data.pageIndex);
-        MaxStageReset();
+        //MaxStageReset();
     }
 
     void UserDataSet()
@@ -83,7 +83,6 @@ public class StageIconDataManager
     {
         string jsonStr = JsonUtility.ToJson(stageIconSaveData);
         PlayerPrefs.SetString(stageIconSaveDatakey, jsonStr);
-
     }
 
     public StageIconDataUserData GetUserData(int stageid)
@@ -91,15 +90,18 @@ public class StageIconDataManager
         return stageIconSaveData.stageUserDataList.Find(data => data.id == stageid);
     }
 
-    public void MaxStageReset()
+    /*
+
+    public int MaxStageReset()
     {
         var stagezeroData = stageDataList[0].stageIconDataUserData;
 
         if (stagezeroData.playOn == false ||
             (stagezeroData.playOn && stagezeroData.starCount ==0))
         {
-            playMaxStageID = -1;
-            return;
+            //playMaxStageID = -1;
+            playMaxStageID = 5;
+            return playMaxStageID;
         }
 
         playMaxStageID = stageDataList
@@ -107,7 +109,10 @@ public class StageIconDataManager
                                            data.stageIconDataUserData.playOn &&
                                            data.stageIconDataUserData.starCount > 0)
                             .Max(data => data.id);
+
+        return playMaxStageID;
     }
+    */
 
     public void PlayOnSet(int stageId)
     {

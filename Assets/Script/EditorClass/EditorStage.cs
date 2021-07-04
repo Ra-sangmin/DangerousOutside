@@ -19,6 +19,7 @@ public class EditorStage : MonoBehaviour
 
     private void Start()
     {
+        /*
         for (int x = 0; x < TileController.x_max_value; x++)
         {
             for (int y = 0; y < TileController.y_max_value; y++)
@@ -39,6 +40,7 @@ public class EditorStage : MonoBehaviour
                 tiles.Add(tileobj);
             }
         }
+        */
 
         transform.parent.GetComponent<Editor_Mnr>().ChangeTileOn();
     }
@@ -90,9 +92,10 @@ public class EditorStage : MonoBehaviour
 
     private Vector2 FindResultPos(Vector2 currentPos, Vector2 size, int id)
     {
-        int width = TileController.x_max_value;
-        int height = TileController.y_max_value;
-        bool[,] map = new bool[width, height];
+        /*
+        //int width = TileController.x_max_value;
+        //int height = TileController.y_max_value;
+        //bool[,] map = new bool[width, height];
 
         Vector2 resultPos = currentPos;
 
@@ -109,7 +112,7 @@ public class EditorStage : MonoBehaviour
                 }
             }
         }
-
+        
         foreach (var citizen in citizenList)
         {
             int posX = (int)citizen.pos.x;
@@ -212,8 +215,8 @@ public class EditorStage : MonoBehaviour
                 resultPos.y--;
             }
         }
-
-        return resultPos;
+        */
+        return Vector2.zero;
     }
 
     public void SetSelectTileType(Tile_Type tile_Type)

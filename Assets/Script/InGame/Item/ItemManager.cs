@@ -22,6 +22,8 @@ public class ItemManager
 
     private ItemManager()
     {
+        PlayerPrefs.DeleteAll();
+
         DataSet();
     }
 
@@ -34,7 +36,7 @@ public class ItemManager
             string key = string.Format("{0}_{1}", saveKey, itemState);
             bool itemOnValue = PlayerPrefs.GetInt(key,0) == 1;
 
-            if (itemState == ItemState.CleanMan)
+            if (itemState == ItemState.Cityhall)
             {
                 itemOnValue = true;
             }

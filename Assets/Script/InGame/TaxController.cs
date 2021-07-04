@@ -28,16 +28,7 @@ public class TaxController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isStart = !GameManager.Ins.tutorialOn;
-        taxValueText.text = "3";
-        currentTax = 3;
-        beforeCurrentTax_int = 3;
-        SetTaxSlider();
-
-        if (isStart)
-        {
-            Init();
-        }
+        //isStart = !GameManager.Ins.tutorialOn && GameManager.Ins.selectStageId > 0;
     }
 
     /// <summary>
@@ -45,8 +36,17 @@ public class TaxController : MonoBehaviour
     /// </summary>
     public void Init()
     {
-        HandleShack();
-        isStart = true;
+        isStart = !GameManager.Ins.tutorialOn && GameManager.Ins.selectStageId > 0;
+        //isStart = true;
+
+        if (isStart)
+        {
+            taxValueText.text = "3";
+            currentTax = 3;
+            beforeCurrentTax_int = 3;
+            SetTaxSlider();
+            HandleShack();
+        }
     }
 
 

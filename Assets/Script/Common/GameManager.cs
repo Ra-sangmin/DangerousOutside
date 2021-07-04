@@ -23,6 +23,7 @@ public class GameManager
     string vibrationOnkey = "vibrationOn";
     public bool vibrationOn = true;
     public int selectStageId = 0;
+    public bool clearOn = false;
 
     string challengeCurrentCntkey = "challengeCurrentCnt";
     public int challengeCurrentCnt;
@@ -46,6 +47,7 @@ public class GameManager
     {
         vibrationOn = PlayerPrefs.GetInt(vibrationOnkey, 1) == 0 ? false : true;
         tutorialState = PlayerPrefs.GetInt(tutorialStatekey, 0);
+        tutorialState = 5;
     }
 
     public void VibrationSet(bool value)

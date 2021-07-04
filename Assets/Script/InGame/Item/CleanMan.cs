@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class CleanMan : MonoBehaviour
 {
@@ -15,10 +16,17 @@ public class CleanMan : MonoBehaviour
 
     public Animator anim;
 
+    public TileController tileController;
+
+    public int currentCnt = 10;
+    public int maxCnt = 10;
+    [SerializeField] List <Image> bgImageList = new List<Image>();
+
     // Start is called before the first frame update
     void Start()
     {
-
+        currentCnt = maxCnt;
+        BGReset();
     }
 
     public void Init(Tile currentTile)
@@ -83,6 +91,7 @@ public class CleanMan : MonoBehaviour
         {
             TileReset();
             moveOn = false;
+            CountReset(-1);
         });
     }
 
@@ -102,7 +111,7 @@ public class CleanMan : MonoBehaviour
 
         foreach (var nodePos in nodePosList)
         {
-            if (nodePos.x >= 0 && nodePos.y >= 0 && nodePos.x < TileController.x_max_value && nodePos.y < TileController.y_max_value &&
+            if (nodePos.x >= 0 && nodePos.y >= 0 && nodePos.x < tileController.x_max_value && nodePos.y < tileController.y_max_value &&
                 GameManager.Ins.tileController.IsWall(nodePos) == false)
             {
                 checkList.Add(nodePos);
@@ -130,6 +139,28 @@ public class CleanMan : MonoBehaviour
         else if (currentTile.tile_Type == Tile_Type.White)
         {
             currentTile.TileChange(Tile_Type.Blue);
+        }
+    }
+
+    public void CountReset(int addCnt)
+    {
+        currentCnt += addCnt;
+        BGReset();
+
+        if (currentCnt < 0 )
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
+    void BGReset()
+    {
+        float fillAmountValue = (float)currentCnt / maxCnt; ;
+
+        foreach (var bgImage in bgImageList)
+        {
+            bgImage.fillAmount = fillAmountValue;
         }
     }
 

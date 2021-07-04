@@ -275,9 +275,9 @@ public class Person : MonoBehaviour
         int halfRange = (int)(MoveRange * 0.5f);
 
         int minX = Mathf.Max(0, tx - halfRange);
-        int maxX = Mathf.Min(tx + halfRange, TileController.x_max_value);
+        int maxX = Mathf.Min(tx + halfRange, tileController.x_max_value);
         int minY = Mathf.Max(0, ty - halfRange);
-        int maxY = Mathf.Min(ty + halfRange, TileController.y_max_value);
+        int maxY = Mathf.Min(ty + halfRange, tileController.y_max_value);
 
         List<Node> area = new List<Node>();
         for (int x = minX; x < maxX; x++)
@@ -289,7 +289,7 @@ public class Person : MonoBehaviour
                     area.Add(node);
             }
         }
-
+        
         return area;
     }
 

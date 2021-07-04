@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Linq;
 using Mobcast.Coffee.UI;
+using DG.Tweening;
 
 public class StagePageController : MonoBehaviour
 {
@@ -13,16 +14,29 @@ public class StagePageController : MonoBehaviour
     public int currenPage = 0;
     public int selectStage;
 
-    private List<StageIcon> stageIconObjList = new List<StageIcon>();
+    [SerializeField] List<StageIcon> stageIconObjList = new List<StageIcon>();
     public StageIconData stageData;
+    [SerializeField] RectTransform iconPanel;
 
     [SerializeField] AtlasImage bg;
     [SerializeField] RectTransform rtBG;
 
-    [SerializeField] AtlasImage leftBtn;
-    [SerializeField] AtlasImage rightBtn;
+    [SerializeField] Image leftBtn;
+    [SerializeField] Image rightBtn;
 
     [SerializeField] StageInfoPopup stageInfoPopup;
+
+    [SerializeField] Animator lightAnim;
+    [SerializeField] RectTransform lightObj;
+    [SerializeField] Animator bossAnim;
+    
+    [SerializeField] List<Animator> activeTileAnimList = new List<Animator>();
+    float activeTileDelay = 0;
+
+    [SerializeField] Animator bossAnim2;
+    [SerializeField] List<Animator> congalAnimList = new List<Animator>();
+
+    public bool selectStageOn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,13 +47,11 @@ public class StagePageController : MonoBehaviour
     void Init()
     {
         PageDataSet();
-        BGSet();
+        //BGSet();
     }
 
     public void PageDataSet()
     {
-        StageIconDataManager.Ins.MaxStageReset();
-
         List<StageIconData> currentPageDataList = StageIconDataManager.Ins.GetPageData(currenPage);
 
         foreach (var stageIconObj in stageIconObjList)
@@ -47,15 +59,12 @@ public class StagePageController : MonoBehaviour
             stageIconObj.gameObject.SetActive(false);
         }
 
-        if (stageIconObjList.Count < currentPageDataList.Count)
+        for (int i = stageIconObjList.Count; i < currentPageDataList.Count; i++)
         {
-            for (int i = stageIconObjList.Count; i < currentPageDataList.Count; i++)
-            {
-                StageIcon stageIcon = Instantiate(Resources.Load<StageIcon>("SelectStage/StageIcon"), this.transform);
-                stageIcon.transform.localPosition = currentPageDataList[i].posData;
-                stageIconObjList.Add(stageIcon);
-                stageIcon.clickEvent += StageStartOn;
-            }
+            StageIcon stageIcon = Instantiate(Resources.Load<StageIcon>("SelectStage/StageIcon"), iconPanel);
+            stageIcon.transform.localPosition = currentPageDataList[i].posData;
+            stageIconObjList.Add(stageIcon);
+            stageIcon.clickEvent += StageStartOn;
         }
 
         for (int i = 0; i < currentPageDataList.Count; i++)
@@ -64,13 +73,151 @@ public class StagePageController : MonoBehaviour
             stageIconObjList[i].DataSet(currentPageDataList[i]);
             stageIconObjList[i].transform.localPosition = currentPageDataList[i].posData;
         }
+
+        bossAnim.Play("Chapter1_Silhouette_default");
+
+        if (GameManager.Ins.clearOn)
+        {
+            GameManager.Ins.clearOn = false;
+            int clearIndex = GameManager.Ins.selectStageId;
+
+            index = GameManager.Ins.selectStageId;
+
+            lightObj.transform.DOLocalRotate(new Vector3(0, 0, GetLightRotValue()), 0).SetEase(Ease.Linear);
+
+            index = clearIndex + 1;
+
+            StartCoroutine(SetLightRot());
+
+        }
     }
+
+    private int index = 0;
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            index++;
+
+            if (index == 5)
+            {
+                index = 0;
+            }
+
+            StartCoroutine( SetLightRot());
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            transform.GetComponent<RectTransform>().DOAnchorPosX(-1080, 1);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            transform.GetComponent<RectTransform>().DOAnchorPosX(0, 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            bossAnim2.Play("duck_g2r");
+
+            for (int i = 0; i < congalAnimList.Count; i++)
+            {
+                if (i < 4)
+                {
+                    congalAnimList[i].Play("Congal_duck");
+                }
+                
+            }
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            bossAnim2.Play("duck_r2y");
+            congalAnimList[4].Play("Congal_duck");
+        }
+
+
+        ActiveTileDelayCheck();
     }
+
+    void ActiveTileDelayCheck()
+    {
+        activeTileDelay -= Time.deltaTime;
+
+        if (activeTileDelay < 0)
+        {
+            activeTileDelay = 3;
+
+            int ran = Random.Range(0, activeTileAnimList.Count);
+            activeTileAnimList[ran].Play("Stage1_bg");
+        }
+    }
+
+    float GetLightRotValue()
+    {
+        float value = -230f;
+
+        //빛이 회전해야될 각도 
+        switch (index)
+        {
+            case 0:
+                value = 50f;
+                break;
+            case 1:
+                value = -20f;
+                break;
+            case 2:
+                value = -90f;
+                break;
+            case 3:
+                value = -160f;
+                break;
+            case 4:
+                value = -230f;
+                break;
+        }
+        return value;
+    }
+
+    IEnumerator SetLightRot()
+    {
+        if (index < 5 )
+        {
+            float rotValue = GetLightRotValue();
+
+            //빛 움직임 준비
+            lightAnim.Play("Chapter1_Light_begin_anim");
+            yield return new WaitForSeconds(1);
+
+            //빛 움직임 시작
+            lightAnim.Play("Chapter1_Light_moving_anim");
+            lightObj.DOLocalRotate(new Vector3(0, 0, rotValue), 1).SetEase(Ease.Linear);
+
+            yield return new WaitForSeconds(1f);
+
+            //빛 움직임 끝
+            lightAnim.Play("Chapter1_Light_end_aim");
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        if (index == 4)
+        {
+            bossAnim.Play("Stage1_Silhouette");
+        }
+        if (index == 5)
+        {
+            bossAnim.Play("Chapter1_Silhouette_clear");
+        }
+        else
+        {
+            bossAnim.Play("Chapter1_Silhouette_default");
+        }
+    }
+
 
     public void StageStartOn(StageIconData stageData)
     {
@@ -82,20 +229,39 @@ public class StagePageController : MonoBehaviour
         //    WarningManager.Instance.WarningSet("준비중 입니다. 다음 업데이트를 기다려주세요.");
         //}
         //else
-        if (this.stageData.id <= StageIconDataManager.Ins.playMaxStageID + 1)
+        //if (this.stageData.id <= StageIconDataManager.Ins.playMaxStageID + 1)
+        //if (this.stageData.id <= StageIconDataManager.Ins.playMaxStageID + 1)
         {
             StageSaveData stageSaveData = stageAllSaveData.stageList.Find(data => data.stageId == this.stageData.id);
             stageInfoPopup.Init(this.stageData, stageSaveData);
             stageInfoPopup.gameObject.SetActive(true);
         }
-        else
-        {
-            WarningManager.Instance.WarningSet("아직은 입장할수 없습니다.");
-        }
+        //else
+        //{
+          //  WarningManager.Instance.WarningSet("아직은 입장할수 없습니다.");
+        //}
+    }
+
+    public void StageStartOn(int stageNum)
+    {
+        if (selectStageOn == false)
+            return;
+        
+        StageSaveData stageSaveData = stageAllSaveData.stageList.Find(data => data.stageId == stageNum);
+
+        //this.stageData = stageSaveData; 
+        //Debug.LogWarning(stageSaveData.stageId);
+
+        stageInfoPopup.Init(this.stageData, stageSaveData);
+        stageInfoPopup.gameObject.SetActive(true);
+
+        GameManager.Ins.StageStartOn(stageNum);
+
     }
 
     public void StartOn()
     {
+        //Debug.LogWarning("start On = " + startEvent);
         if (startEvent != null)
         {
             SoundManager.Instance.PlaySe(SeEnum.Touch);
@@ -116,32 +282,53 @@ public class StagePageController : MonoBehaviour
             
         }
 
-        BGSet();
-        PageDataSet();
+        StartCoroutine(BGSetDoing());
+
+        
+
     }
 
-    public void BGSet()
+    IEnumerator BGSetDoing() 
     {
+        iconPanel.gameObject.SetActive(false);
+
+
+        rtBG.transform.DOLocalMoveX(BGSet(), 1);
+
+        yield return new WaitForSeconds(1);
+
+        PageDataSet();
+        iconPanel.gameObject.SetActive(true);
+
+    }
+
+    public float BGSet()
+    {
+        float targetPos = 0;
+
         if (currenPage == 0)
         {
-            bg.spriteName = "Img_Map_3";
+            //bg.spriteName = "Img_Map_3";
 
-            rtBG.transform.localPosition = new Vector3(-125.4f, -11.2f, 0);
+            targetPos = 0;
 
             rightBtn.gameObject.SetActive(true);
             leftBtn.gameObject.SetActive(false);
         }
         else if (currenPage == 1)
         {
-            bg.spriteName = "Img_Map_4";
+            //bg.spriteName = "Img_Map_4";
 
-            rtBG.transform.localPosition = new Vector3(120f, -11.2f, 0);
+            targetPos = -1698;
 
             leftBtn.gameObject.SetActive(true);
             rightBtn.gameObject.SetActive(false);
         }
 
-        
+
+        return targetPos;
+
+
     }
 
 }

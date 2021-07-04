@@ -36,6 +36,7 @@ public class StageIcon : MonoBehaviour
 
         bool playerOn = userData.playOn && userData.starCount > 0;
 
+        /*
         starIconPanel.gameObject.SetActive(playerOn);
         stageNumText.transform.localPosition = playerOn ? new Vector3(0, -27, 0) : Vector3.zero;
 
@@ -62,7 +63,7 @@ public class StageIcon : MonoBehaviour
                 //미발견 포인트
                 bgImage.spriteName = "Img_Stage_poiont_unfind";
             }
-        }
+        }*/
     }
 
     public void ClickOn()

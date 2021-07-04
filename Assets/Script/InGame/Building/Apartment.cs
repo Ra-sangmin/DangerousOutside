@@ -8,8 +8,8 @@ public class Apartment : Building
 {
     [SerializeField] Slider foodSlider;
 
-    float currentFoodCnt;
-    float maxFoodCnt;
+    public float currentFoodCnt;
+    public float maxFoodCnt;
 
     float sliderValue
     {

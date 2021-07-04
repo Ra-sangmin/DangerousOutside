@@ -13,6 +13,7 @@ public class CityhallController : BaseItem
     int gift_maxValue = 10;
 
     float giftAddCurrentDelay;
+    float giftAddValue = 1f;
     float giftAddMaxDelay = 10;
 
     List<Building> allBuildingList = new List<Building>();
@@ -77,6 +78,8 @@ public class CityhallController : BaseItem
 
     public void BuildingClick(Building building)
     {
+        Debug.LogWarning("BuildingClick = " );
+
         if (!HomeCheck(building))
             return;
 
@@ -148,7 +151,7 @@ public class CityhallController : BaseItem
 
     void GiftAddDelayCheck()
     {
-        giftAddCurrentDelay += Time.deltaTime;
+        giftAddCurrentDelay += Time.deltaTime * giftAddValue;
 
         if (giftAddCurrentDelay >= giftAddMaxDelay)
         {

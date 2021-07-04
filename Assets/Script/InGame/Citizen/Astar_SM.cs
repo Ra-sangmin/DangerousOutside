@@ -22,6 +22,35 @@ public class Astar_SM
 
         List<Node> pathList = new List<Node>();
 
+        int yMoveCnt = endNode.Y - startNode.Y;
+        int xMoveCnt = endNode.X - startNode.X;
+
+        while (true)
+        {
+            if (currentNode.X == endNode.X && currentNode.Y == endNode.Y) 
+            {
+                break;
+            }
+
+            if (currentNode.X != endNode.X)
+            {
+                float xValue = currentNode.X < endNode.X ?
+                               currentNode.X + 1 : currentNode.X - 1;
+
+                currentNode = new Node(xValue, currentNode.Y);
+            }
+            else if (currentNode.Y != endNode.Y)
+            {
+                float yValue = currentNode.Y < endNode.Y ? 
+                               currentNode.Y + 1 : currentNode.Y - 1;
+                currentNode = new Node(currentNode.X, yValue);
+            }
+
+            pathList.Add(currentNode);
+        }
+
+
+        /*
         while (true)
         {
             if (currentNode.Position == endNode.Position)
@@ -47,7 +76,7 @@ public class Astar_SM
             closeList.Add(currentNode);
 
             currentNode = nextNode;
-        }
+        }*/
 
         return pathList;
     }
@@ -76,7 +105,7 @@ public class Astar_SM
     Node AddAdjacent(int x, int y)
     {
         // Map 인덱스 벗어날 때
-        if (x < 0 || x >= TileController.x_max_value || y < 0 || y >= TileController.y_max_value ||
+        if (x < 0 || x >= GameManager.Ins.tileController.x_max_value || y < 0 || y >= GameManager.Ins.tileController.y_max_value ||
             GameManager.Ins.tileController.wall == null)
             return null;
 

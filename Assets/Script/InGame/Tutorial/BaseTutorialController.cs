@@ -35,6 +35,7 @@ public class BaseTutorialController : MonoBehaviour
     {
         List<TileSaveData> tileSaveDataList = new List<TileSaveData>();
 
+        /*
         for (int x = 0; x < TileController.x_max_value; x++)
         {
             for (int y = 0; y < TileController.y_max_value; y++)
@@ -54,6 +55,7 @@ public class BaseTutorialController : MonoBehaviour
                 tileSaveDataList.Add(tileSaveData);
             }
         }
+        */
 
         foreach (var tile in tileSaveDataList)
         {

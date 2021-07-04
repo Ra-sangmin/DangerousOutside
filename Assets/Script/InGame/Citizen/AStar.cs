@@ -247,8 +247,8 @@ public class AStar
     Node AddAdjacent(int x, int y)
     {
         // Map 인덱스 벗어날 때
-        if (x < 0 || x >= TileController.x_max_value || y < 0 || y >= TileController.y_max_value)
-            return null;
+        //if (x < 0 || x >= TileController.x_max_value || y < 0 || y >= TileController.y_max_value)
+          //  return null;
 
         Node adjacent = Map[x, y];
 

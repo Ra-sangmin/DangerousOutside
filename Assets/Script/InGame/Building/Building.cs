@@ -13,9 +13,24 @@ public class Building : MonoBehaviour
     [System.NonSerialized] public List<Citizen> citizenList = new List<Citizen>();
     protected int maxCitizenCnt;
     public UnityAction<Building> buildingClickOn;
+    public bool isRead = false;
+
 
     public void ResetPos(Tile tile)
     {
+        RectTransform rect = tile.transform.GetComponent<RectTransform>();
+
+        Transform originParant = this.transform.parent;
+
+        this.transform.parent = tile.transform;
+        this.transform.localPosition = Vector3.zero;
+        this.transform.parent = tile.transform;
+        this.transform.parent = originParant;
+
+        float size = rect.sizeDelta.x;
+
+        transform.localScale = Vector3.one * (size / 110);
+
         this.tile = tile;
         Vector3 tilepos = tile.transform.position;
         transform.position = tilepos;

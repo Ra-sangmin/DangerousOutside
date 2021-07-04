@@ -66,7 +66,7 @@ public class BaseItem : MonoBehaviour
                 needCost = 1; break;
             case ItemState.CleanMan:
                 titleTextStr = "방역이소환";
-                needCost = 3; break;
+                needCost = 4; break;
             case ItemState.ForceGoHome:
                 titleTextStr = "강제귀가";
                 needCost = 1; break;

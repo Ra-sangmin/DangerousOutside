@@ -142,10 +142,10 @@ public class TutorialController_0 : BaseTutorialController
 
         Tile tile = null;
         float distance = 100;
-
-        for (int x = 0; x < TileController.x_max_value; x++)
+        
+        for (int x = 0; x < tileController.x_max_value; x++)
         {
-            for (int y = 0; y < TileController.y_max_value; y++)
+            for (int y = 0; y < tileController.y_max_value; y++)
             {
                 Vector2 tilePos = tileController.tiles[x, y].transform.position;
 
@@ -158,6 +158,7 @@ public class TutorialController_0 : BaseTutorialController
                 }
             }
         }
+        
 
         if (tile == null)
         {

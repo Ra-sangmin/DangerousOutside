@@ -48,9 +48,9 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
         Tile tile = null;
         float distance = 100;
 
-        for (int x = 0; x < TileController.x_max_value; x++)
+        for (int x = 0; x < tileController.x_max_value; x++)
         {
-            for (int y = 0; y < TileController.y_max_value; y++)
+            for (int y = 0; y < tileController.y_max_value; y++)
             {
                 Vector2 tilePos = tileController.tiles[x, y].transform.position;
 
@@ -63,7 +63,7 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
                 }
             }
         }
-
+        
         //금지구역 생성
         if (tile != null)
         {
@@ -90,19 +90,21 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
         int yMinVaue = (int)tile.pos.y - 2;
         int yMaxVaue = (int)tile.pos.y + 2;
 
+        
         //금지 구역 지정
         List<Node> banTileList = new List<Node>();
-
+        
         for (int x = xMinVaue; x <= xMaxVaue; x++)
         {
             for (int y = yMinVaue; y <= yMaxVaue; y++)
             {
-                if (x < 0 || y < 0 || x >= TileController.x_max_value || y >= TileController.y_max_value)
+                if (x < 0 || y < 0 || x >= tileController.x_max_value || y >= tileController.y_max_value)
                     continue;
 
                 banTileList.Add(tileController.Map[x, y]);
             }
         }
+        
 
         if (banTileList.Count == null)
             return;

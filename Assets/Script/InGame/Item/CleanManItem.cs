@@ -25,6 +25,7 @@ public class CleanManItem : BaseItem, IPointerDownHandler, IDragHandler, IPointe
             return;
 
         cleanManObj = Instantiate(Resources.Load<CleanMan>("InGame/Item/CleanMan"), transform);
+        cleanManObj.tileController = tileController;
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
         cleanManObj.transform.position = new Vector3(worldPos.x, worldPos.y + 70);
     }
@@ -49,9 +50,9 @@ public class CleanManItem : BaseItem, IPointerDownHandler, IDragHandler, IPointe
         Tile tile = null;
         float distance = 100;
 
-        for (int x = 0; x < TileController.x_max_value; x++)
+        for (int x = 0; x < tileController.x_max_value; x++)
         {
-            for (int y = 0; y < TileController.y_max_value; y++)
+            for (int y = 0; y < tileController.y_max_value; y++)
             {
                 Vector2 tilePos = tileController.tiles[x, y].transform.position;
 
@@ -64,6 +65,7 @@ public class CleanManItem : BaseItem, IPointerDownHandler, IDragHandler, IPointe
                 }
             }
         }
+        
 
         if (tile != null)
         {

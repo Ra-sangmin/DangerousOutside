@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Linq;
 
 public class TileController : MonoBehaviour
 {
@@ -13,13 +14,13 @@ public class TileController : MonoBehaviour
     //public const int x_max_value = 18;
     //public const int y_max_value = 30;
 
-    public const int x_max_value = 15;
-    public const int y_max_value = 23;
+    public int x_max_value = 15;
+    public int y_max_value = 23;
 
     public Node[,] Map;
     public bool[,] wall;
 
-    public Tile[,] tiles = new Tile[x_max_value, y_max_value];
+    public Tile[,] tiles;
 
     public int selectStageId = -1;
 
@@ -34,12 +35,16 @@ public class TileController : MonoBehaviour
     [SerializeField] Text redTilText;
 
     public UnityAction gameWinOn;
+    public UnityAction gameFailOn;
 
     public RectTransform tileParant;
     public RectTransform builingParant;
     public RectTransform citizenParant;
 
     bool isEnd;
+
+    [SerializeField] List<Image> bgList = new List<Image>();
+    [SerializeField] List<RectTransform> patternList = new List<RectTransform>();
 
     // Start is called before the first frame update
     void Start()
@@ -55,21 +60,84 @@ public class TileController : MonoBehaviour
             return;
         }
 
-        Debug.LogWarning("Init");
-
         if (selectStageId == -1)
         {
             selectStageId = GameManager.Ins.selectStageId;
         }
 
         stageSaveData = stageAllSaveData.stageList.Find(stageData => stageData.stageId == selectStageId);
+
+        StartCoroutine(TileCreate());
+
+        SetBG();
+    }
+
+    void SetBG()
+    {
+        int chapterId = (selectStageId / 5);
+
+        bgList[chapterId].gameObject.SetActive(true);
+        patternList[chapterId].gameObject.SetActive(true);
+    }
+
+    Vector2 GetTileSize()
+    {
+        Vector2 tileSize = Vector2.one;
+
+        if (selectStageId < 5)
+        {
+            tileSize = new Vector2(5, 5);
+        }
+        else if (selectStageId < 10)
+        {
+            tileSize = new Vector2(6, 6);
+        }
+
+        return tileSize;
+    }
+
+
+    IEnumerator TileCreate()
+    {
+        Vector2 parantSize = tileParant.sizeDelta;
+        GridLayoutGroup gridLayoutGroup = tileParant.GetComponent<GridLayoutGroup>();
+
+        float xGridValue = parantSize.x / stageSaveData.tileSize.x;
+        float yGridValue = parantSize.y / stageSaveData.tileSize.y;
+
+        gridLayoutGroup.cellSize = new Vector2(xGridValue, yGridValue);
+
+        x_max_value = (int)stageSaveData.tileSize.x;
+        y_max_value = (int)stageSaveData.tileSize.y;
+
+        tiles = new Tile[x_max_value, y_max_value];
         Map = new Node[x_max_value, y_max_value];
-        wall = new bool[x_max_value, y_max_value];
+        //wall = new bool[x_max_value, y_max_value];
 
         foreach (var tile in stageSaveData.tileList)
         {
-            TileCreate(tile);
+           // TileCreate(tile);
         }
+
+        //int tileCnt = (int)(tileSize.x * tileSize.y);
+
+//        stageSaveData.tileList
+
+        
+        for (int y = (int)stageSaveData.tileSize.y-1; y >= 0; y--)
+        {
+            for (int x = 0; x < stageSaveData.tileSize.x; x++)
+            {
+                TileSaveData tile = stageSaveData.tileList.FirstOrDefault(data => data.pos.x == x && data.pos.y == y);
+
+                if (tile != null)
+                {
+                    TileCreate(tile);
+                }
+            }
+        }
+
+        yield return new WaitForEndOfFrame();
 
         foreach (var citizen in stageSaveData.citizenList)
         {
@@ -80,14 +148,46 @@ public class TileController : MonoBehaviour
         {
             BuildingCreate(building);
         }
-       
+
         if (cityhallController != null)
         {
             cityhallController.SetBuilding(buildingList);
         }
 
         redTilSlider.gameObject.SetActive(true);
-        RedTileCheck();
+
+        if (GameManager.Ins.selectStageId != 4)
+        {
+            RedTileCheck();
+        }
+
+        /*
+        yield return new WaitForEndOfFrame();
+
+        BuildingSaveData buildingSaveData = new BuildingSaveData();
+        buildingSaveData.buildingType = Building_Type.Small;
+        buildingSaveData.pos = new Vector2(1, 1);
+        buildingSaveData.isRead = true;
+        buildingSaveData.chitizen_normal_num = 5;
+
+        Building building = BuildingCreate(buildingSaveData);
+        ((Apartment)building).currentFoodCnt = 8;
+
+        BuildingSaveData buildingSaveData2 = new BuildingSaveData();
+        buildingSaveData2.buildingType = Building_Type.Small;
+        buildingSaveData2.pos = new Vector2(3, 3);
+        buildingSaveData2.isRead = true;
+        buildingSaveData2.chitizen_normal_num = 5;
+
+        BuildingCreate(buildingSaveData2);
+
+        if (cityhallController != null)
+        {
+            cityhallController.SetBuilding(buildingList);
+        }
+
+        //gridLayoutGroup
+        */
     }
 
     public void TileCreate(TileSaveData tile)
@@ -95,13 +195,14 @@ public class TileController : MonoBehaviour
         if (tile.pos.x >= x_max_value || tile.pos.y >= y_max_value)
             return;
         
-        Tile tileobj = Instantiate(Resources.Load<Tile>("InGame/Tile"), tileParant.transform);
+        Tile tileobj = Instantiate(Resources.Load<Tile>("InGame/Tile3"), tileParant.transform);
         tileobj.pos = tile.pos;
         //tileobj.transform.localPosition = new Vector2(tileobj.pos.x * 55, tileobj.pos.y * 43);
-        tileobj.transform.localPosition = new Vector2(tileobj.pos.x * 67, tileobj.pos.y * 55);
+        //tileobj.transform.localPosition = new Vector2(tileobj.pos.x * 67, tileobj.pos.y * 55);
         tileobj.TileChange(tile.tile_Type, true);
         tileobj.tileChangeOn = RedTileCheck;
-        tiles[(int)tileobj.pos.x, (int)tileobj.pos.y] = tileobj;
+        tiles[(int)tile.pos.x, (int)tile.pos.y] = tileobj;
+
         SetNodeData(tileobj);
     }
 
@@ -152,7 +253,12 @@ public class TileController : MonoBehaviour
 
         Citizen citizenOBJ = Instantiate(Resources.Load<Citizen>(citizenPath), citizenParant.transform);
         citizenOBJ.home = citizen.home;
-        
+
+        if (building.isRead)
+        {
+            citizen.citizen_color = CitizenColor.Red;
+        }
+
         Tile tile = tiles[(int)building.tile.pos.x, (int)building.tile.pos.y-1];
 
         citizenOBJ.Init(this, tile);
@@ -211,7 +317,9 @@ public class TileController : MonoBehaviour
         Building buildingObj = editorBuilding.GetComponent<Building>();
         buildingObj.Init(building);
         buildingObj.ResetPos(tile);
+        buildingObj.isRead = building.isRead;
         buildingList.Add(buildingObj);
+        
         SetNodeData(building);
 
         return buildingObj;
@@ -263,8 +371,7 @@ public class TileController : MonoBehaviour
         {
             for (int y = 0; y < y_max_value; y++)
             {
-
-                if (tiles[x, y].tile_Type == Tile_Type.Red)
+                if (tiles[x, y] != null && tiles[x, y].tile_Type == Tile_Type.Red)
                 {
                     redTileCnt++;
                 }
@@ -283,6 +390,14 @@ public class TileController : MonoBehaviour
             {
                 isEnd = true;
                 gameWinOn();
+            }
+        }
+        else if (redTileCnt >= maxValue)
+        {
+            if (gameFailOn != null && isEnd == false)
+            {
+                isEnd = true;
+                gameFailOn();
             }
         }
     }

@@ -73,8 +73,19 @@ public class Citizen : MonoBehaviour
 
     public void ResetPos(Tile tile)
     {
-        Vector3 tilepos = tile.transform.position;
-        transform.position = tilepos;
+        RectTransform rect = tile.transform.GetComponent<RectTransform>();
+
+        Transform originParant = this.transform.parent;
+
+        this.transform.parent = tile.transform;
+        this.transform.localPosition = Vector3.zero;
+        this.transform.parent = tile.transform;
+        this.transform.parent = originParant;
+
+        float size = rect.sizeDelta.x;
+
+        transform.localScale = Vector3.one * (size / 105);
+
         currentTile = tile;
     }
 
@@ -175,7 +186,7 @@ public class Citizen : MonoBehaviour
         Node endNode = new Node(tempTile.pos);
 
         List<Node> pathList = astar.GetPathList(startNode, endNode);
-
+        
         foreach (var path in pathList)
         {
             targetMoveList.Enqueue(tileController.tiles[(int)path.X, (int)path.Y]);
@@ -198,7 +209,6 @@ public class Citizen : MonoBehaviour
         {
             speechBubble.ShowSpeechBubble(EmoticonType.Walk, citizen_color == CitizenColor.Red);
         }
-        
     }
 
     public void MoveDoing(Tile targetTile,TweenCallback completeEvent)
@@ -293,7 +303,7 @@ public class Citizen : MonoBehaviour
                 checkPos = new Vector2(currentTile.pos.x + x, currentTile.pos.y + y);
 
                 if (checkPos != currentTile.pos &&
-                    checkPos.x >= 0 && checkPos.y >= 0 && checkPos.x < TileController.x_max_value && checkPos.y < TileController.y_max_value)
+                    checkPos.x >= 0 && checkPos.y >= 0 && checkPos.x < tileController.x_max_value && checkPos.y < tileController.y_max_value)
                 {
                     nodePosList.Add(checkPos);
                 }
@@ -304,7 +314,7 @@ public class Citizen : MonoBehaviour
 
         foreach (var nodePos in nodePosList)
         {
-            if (nodePos.x >= 0 && nodePos.y >= 0 && nodePos.x < TileController.x_max_value && nodePos.y < TileController.y_max_value)
+            if (nodePos.x >= 0 && nodePos.y >= 0 && nodePos.x < tileController.x_max_value && nodePos.y < tileController.y_max_value)
             {
                 checkList.Add(nodePos);
             }

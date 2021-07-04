@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Anim_Car_coopang_move 1
+  m_Name: Anim_Car_coopang_move
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0

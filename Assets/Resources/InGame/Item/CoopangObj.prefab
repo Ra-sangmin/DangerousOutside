@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 6129429007619104051}
   - component: {fileID: 269093276188304197}
   m_Layer: 5
-  m_Name: Coopang
+  m_Name: CoopangObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ RectTransform:
   m_GameObject: {fileID: 7307484377078154819}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 200, y: 200, z: 200}
   m_Children:
   - {fileID: 1295820108514446166}
   - {fileID: 3405932997201344280}

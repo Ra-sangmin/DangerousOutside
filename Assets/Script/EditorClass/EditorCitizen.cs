@@ -53,6 +53,7 @@ public class EditorCitizen : MonoBehaviour, IDragHandler, IPointerUpHandler , IP
         EditorTile tile = null;
         float distance = 100;
 
+        /*
         for (int x = 0; x < TileController.x_max_value; x++)
         {
             for (int y = 0; y < TileController.y_max_value; y++)
@@ -68,7 +69,7 @@ public class EditorCitizen : MonoBehaviour, IDragHandler, IPointerUpHandler , IP
                 }
             }
         }
-
+        */
         if (tile != null)
         {
             tile = editorStage.GetResultPos((int)tile.pos.x, (int)tile.pos.y, Vector2.one, id);

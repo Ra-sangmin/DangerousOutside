@@ -37,7 +37,8 @@ public class InGameController : MonoBehaviour
     /// </summary>
     void EventSet()
     {
-        timerController.timeOverEvent = TimeOverOn;
+        timerController.timeOverEvent = GameFailOn;
+        tileController.gameFailOn = GameFailOn;
         tileController.gameWinOn = GameWinOn;
     }
 
@@ -56,10 +57,13 @@ public class InGameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            tileController.gameWinOn();
+        }
     }
 
-    void TimeOverOn()
+    void GameFailOn()
     {
         SoundManager.Instance.StopBGM();
         SoundManager.Instance.PlaySe(SeEnum.Result_Fail);
@@ -122,6 +126,7 @@ public class InGameController : MonoBehaviour
         SoundManager.Instance.StopBGM();
         SoundManager.Instance.PlaySe(SeEnum.Result_Success);
         GameManager.Ins.resultOn = true;
+        GameManager.Ins.clearOn = true;
         timerController.timeOn = false;
 
         int redCnt = tileController.citizenList.Count(data => data.citizen_color == CitizenColor.Red);
@@ -138,13 +143,13 @@ public class InGameController : MonoBehaviour
         switch (GameManager.Ins.selectStageId)
         {
             case 0 :
-                saveItem = ItemState.Cityhall;
+                saveItem = ItemState.GiftCntAdd;
                 break;
             case 1:
-                saveItem = ItemState.Cleaner;
+                saveItem = ItemState.CleanMan;
                 break;
             case 2:
-                saveItem = ItemState.GiftCntAdd;
+                saveItem = ItemState.Cleaner;
                 break;
             case 3:
                 saveItem = ItemState.BanArea;

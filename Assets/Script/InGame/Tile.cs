@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Tile : MonoBehaviour
 {
     public Vector2 pos;
-    public Tile_Type tile_Type;
+    public Tile_Type tile_Type = Tile_Type.White;
     public Animator anim;
     public UnityAction tileChangeOn;
 
@@ -15,37 +15,19 @@ public class Tile : MonoBehaviour
         if (type == Tile_Type.None && setOn == false)
             return;
 
+        Tile_Type beforeType = tile_Type;
         tile_Type = type;
+
+        if (beforeType == Tile_Type.None && tile_Type != Tile_Type.White)
+        {
+            beforeType = Tile_Type.White;
+        }
+
+        string animName = string.Format("Tiles200x200_{0}2{1}", GetTypeName(beforeType), GetTypeName(type));
 
         if (anim != null)
         {
-            bool whiteOn = false;
-            bool red = false;
-            bool blue = false;
-
-            switch (type)
-            {
-                case Tile_Type.White:
-                    whiteOn = true;
-                    red = false;
-                    blue = false;
-                    break;
-                case Tile_Type.Red:
-                    whiteOn = false;
-                    red = true;
-                    blue = false;
-                    break;
-                case Tile_Type.Blue:
-                    whiteOn = false;
-                    red = false;
-                    blue = true;
-                    break;
-            }
-
-            anim.SetBool("white", whiteOn);
-            anim.SetBool("red", red);
-            anim.SetBool("blue", blue);
-
+            anim.Play(animName);
 
             if (type == Tile_Type.None)
             {
@@ -57,6 +39,24 @@ public class Tile : MonoBehaviour
         {
             tileChangeOn();
         }
+    }
+
+    public string GetTypeName(Tile_Type type)
+    {
+        switch (type)
+        {
+            case Tile_Type.None:
+                return "n";
+            case Tile_Type.White:
+                return "w";
+            case Tile_Type.Red:
+                return "r";
+            case Tile_Type.Blue:
+                return "b";
+        }
+
+        return "n";
+
     }
 
 }
