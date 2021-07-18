@@ -77,15 +77,24 @@ public class SelectStageController : MonoBehaviour
 
         AllDeActive();
 
-        if (index == 1)
+        if (index == 0)
         {
-            mapAnim.Play("C1_to_C2_RR");
+            string animName = nextOn == false ? "C2_to_C1_RR" : "C1_R_idle";
+
+            mapAnim.Play(animName);
+            bgPanel.anchoredPosition3D = new Vector2(0, 0);
+        }
+        else if(index == 1)
+        {
+            string animName = nextOn == false ? "C3_to_C2_RR" : "C1_to_C2_RR";
+            mapAnim.Play(animName);
             bgPanel.anchoredPosition3D = new Vector2(-1080, 0);
         }
-        else if (index == 0)
+        else if (index == 2)
         {
-            mapAnim.Play("C2_to_C1_RR");
-            bgPanel.anchoredPosition3D = new Vector2(0, 0);
+            string animName = nextOn == false ? "C4_to_C3_RR" : "C2_to_C3_RR";
+            mapAnim.Play(animName);
+            bgPanel.anchoredPosition3D = new Vector2(-2160, 0);
         }
 
         StartCoroutine(NextBtnClickOn());
@@ -97,6 +106,7 @@ public class SelectStageController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         BtnActiveSet();
         enter_Btn.gameObject.SetActive(true);
+        IdleAnimPlay();
     }
 
     void BtnActiveSet()
@@ -106,7 +116,7 @@ public class SelectStageController : MonoBehaviour
             l_Btn.gameObject.SetActive(false);
             r_Btn.gameObject.SetActive(true);
         }
-        else if (index == 1)
+        else if (index == 2)
         {
             l_Btn.gameObject.SetActive(true);
             r_Btn.gameObject.SetActive(false);
@@ -138,6 +148,10 @@ public class SelectStageController : MonoBehaviour
         {
             mapAnim.Play("C2_toIngame_r");
         }
+        else if (index == 2)
+        {
+            mapAnim.Play("C3_toIngame_r");
+        }
 
         StartCoroutine(EntroBtnClickOn());
     }
@@ -148,6 +162,8 @@ public class SelectStageController : MonoBehaviour
         backBtn.gameObject.SetActive(true);
 
         stagePageController.selectStageOn = true;
+
+        stagePageController.ChapterSelectOn(index);
     }
 
 
@@ -165,6 +181,10 @@ public class SelectStageController : MonoBehaviour
         {
             mapAnim.Play("C2_toIngame_r_back");
         }
+        else if (index == 2)
+        {
+            mapAnim.Play("C3_toIngame_r_back");
+        }
 
         StartCoroutine(BackBtnClickOn());
     }
@@ -174,6 +194,19 @@ public class SelectStageController : MonoBehaviour
 
         BtnActiveSet();
         enter_Btn.gameObject.SetActive(true);
+
+        IdleAnimPlay();
     }
+
+    void IdleAnimPlay()
+    {
+        switch (index)
+        {
+            case 0: mapAnim.Play("C1_R_idle"); break;
+            case 1: mapAnim.Play("C2_R_idle"); break;
+            case 2: mapAnim.Play("C3_R_idle"); break;
+        }
+    }
+
 
 }

@@ -14,6 +14,8 @@ public class StagePageController : MonoBehaviour
     public int currenPage = 0;
     public int selectStage;
 
+    public List<Animator> stageAnimList = new List<Animator>();
+
     [SerializeField] List<StageIcon> stageIconObjList = new List<StageIcon>();
     public StageIconData stageData;
     [SerializeField] RectTransform iconPanel;
@@ -36,7 +38,12 @@ public class StagePageController : MonoBehaviour
     [SerializeField] Animator bossAnim2;
     [SerializeField] List<Animator> congalAnimList = new List<Animator>();
 
+    [SerializeField] Animator stage3_anim;
+
     public bool selectStageOn = false;
+
+    bool stage_3_IntroOn = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -89,6 +96,15 @@ public class StagePageController : MonoBehaviour
 
             StartCoroutine(SetLightRot());
 
+        }
+    }
+
+    public void ChapterSelectOn(int chapderIndex)
+    {
+        if (chapderIndex == 2 && stage_3_IntroOn == false)
+        {
+            stage_3_IntroOn = true;
+            stage3_anim.Play("C3_start_walk");
         }
     }
 
