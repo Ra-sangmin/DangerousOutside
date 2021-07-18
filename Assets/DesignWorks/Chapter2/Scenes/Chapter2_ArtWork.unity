@@ -775,7 +775,7 @@ RectTransform:
   m_Children:
   - {fileID: 213956225}
   m_Father: {fileID: 2122213982}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5042,6 +5042,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 882222475}
+  - component: {fileID: 882222476}
   m_Layer: 5
   m_Name: door
   m_TagString: Untagged
@@ -5065,13 +5066,34 @@ RectTransform:
   - {fileID: 1751770553}
   - {fileID: 1317503061}
   m_Father: {fileID: 1453870796}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -182}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &882222476
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882222474}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &898082149
 GameObject:
   m_ObjectHideFlags: 0
@@ -6086,7 +6108,7 @@ GameObject:
   - component: {fileID: 520235631}
   - component: {fileID: 1071942950}
   m_Layer: 5
-  m_Name: Chapter2_boss
+  m_Name: Chapter2_bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7877,7 +7899,6 @@ RectTransform:
   m_Children:
   - {fileID: 1598782884}
   - {fileID: 2115477206}
-  - {fileID: 1716651405}
   - {fileID: 882222475}
   m_Father: {fileID: 1875412496}
   m_RootOrder: 1
@@ -8274,7 +8295,7 @@ RectTransform:
   m_Children:
   - {fileID: 19842607}
   m_Father: {fileID: 2122213982}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9246,7 +9267,7 @@ GameObject:
   - component: {fileID: 1716651405}
   - component: {fileID: 1716651406}
   m_Layer: 5
-  m_Name: boss_gr
+  m_Name: Chapter2_boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9259,18 +9280,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716651404}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1986701590}
   - {fileID: 324048489}
-  m_Father: {fileID: 1453870796}
-  m_RootOrder: 2
+  m_Father: {fileID: 2122213982}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 336}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1716651406
@@ -9283,7 +9304,7 @@ Animator:
   m_GameObject: {fileID: 1716651404}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: abd44a22632a0004e888145cf81a97d3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6929f2d06e314974495879bb5356d18a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -11793,6 +11814,7 @@ RectTransform:
   - {fileID: 1185710917}
   - {fileID: 194253762}
   - {fileID: 520235631}
+  - {fileID: 1716651405}
   - {fileID: 1510582121}
   - {fileID: 87459644}
   m_Father: {fileID: 0}
