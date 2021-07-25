@@ -85,7 +85,7 @@ public class StagePageController : MonoBehaviour
             congalAnimList2[i].Play(animName);
         }
 
-        congalAnimPanel.alpha = 0;
+        congalAnimPanel.alpha = 1;
 
     }
 
@@ -141,7 +141,7 @@ public class StagePageController : MonoBehaviour
 
     IEnumerator Stage3IntroPlay()
     {
-        congalAnimPanel.alpha = 0;
+        congalAnimPanel.alpha = 1;
 
         stage_3_IntroOn = true;
         stage3_anim.Play("C3_start_walk");
@@ -178,6 +178,19 @@ public class StagePageController : MonoBehaviour
             transform.GetComponent<RectTransform>().DOAnchorPosX(0, 1);
         }
 
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            stage3_anim.Play("C3_start_w2r");
+
+            for (int i = 0; i < congalAnimList2.Count; i++)
+            {
+                if (i < 4)
+                {
+                    congalAnimList2[i].Play("Congal_white");
+                }
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Z))
         {
             stage3_anim.Play("C3_r2b");
@@ -191,11 +204,11 @@ public class StagePageController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            bossAnim2.Play("duck_r2y");
-            congalAnimList[4].Play("Congal_duck");
-        }
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    bossAnim2.Play("duck_r2y");
+        //    congalAnimList[4].Play("Congal_duck");
+        //}
 
 
         ActiveTileDelayCheck();

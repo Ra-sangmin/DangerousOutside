@@ -70,6 +70,11 @@ public class Boss_Chapter_2_AI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
+            bossAnim.Play("Chapter2_boss_r2w");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
             bossAnim.Play("Chapter2_boss_disappear");
             waveAnim.Play("Chapter2_stage_wave_boss");
         }
