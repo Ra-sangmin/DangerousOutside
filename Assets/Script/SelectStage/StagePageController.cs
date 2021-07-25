@@ -37,6 +37,9 @@ public class StagePageController : MonoBehaviour
 
     [SerializeField] Animator bossAnim2;
     [SerializeField] List<Animator> congalAnimList = new List<Animator>();
+    [SerializeField] List<Animator> congalAnimList2 = new List<Animator>();
+
+    [SerializeField] CanvasGroup congalAnimPanel;
 
     [SerializeField] Animator stage3_anim;
 
@@ -55,6 +58,35 @@ public class StagePageController : MonoBehaviour
     {
         PageDataSet();
         //BGSet();
+
+        string animName = string.Empty;
+
+        for (int i = 0; i < congalAnimList2.Count; i++)
+        {
+            switch (i)
+            {
+                case 0:
+                    animName = "Congal_bat";
+                    break;
+                case 1:
+                    animName = "Congal_devil";
+                    break;
+                case 2:
+                    animName = "Congal_ghost";
+                    break;
+                case 3:
+                    animName = "Congal_skeleton";
+                    break;
+                case 4:
+                    animName = "Congal_wolf";
+                    break;
+            }
+
+            congalAnimList2[i].Play(animName);
+        }
+
+        congalAnimPanel.alpha = 0;
+
     }
 
     public void PageDataSet()
@@ -103,10 +135,22 @@ public class StagePageController : MonoBehaviour
     {
         if (chapderIndex == 2 && stage_3_IntroOn == false)
         {
-            stage_3_IntroOn = true;
-            stage3_anim.Play("C3_start_walk");
+            StartCoroutine(Stage3IntroPlay());       
         }
     }
+
+    IEnumerator Stage3IntroPlay()
+    {
+        congalAnimPanel.alpha = 0;
+
+        stage_3_IntroOn = true;
+        stage3_anim.Play("C3_start_walk");
+
+        yield return new WaitForSeconds(11.25f);
+
+        congalAnimPanel.alpha = 1;
+    }
+
 
     private int index = 0;
 
@@ -136,17 +180,15 @@ public class StagePageController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            bossAnim2.Play("duck_g2r");
+            stage3_anim.Play("C3_r2b");
 
-            for (int i = 0; i < congalAnimList.Count; i++)
+            for (int i = 0; i < congalAnimList2.Count; i++)
             {
-                if (i < 4)
+                if (i < 5)
                 {
-                    congalAnimList[i].Play("Congal_duck");
-                }
-                
+                    congalAnimList2[i].Play("Congal_white");
+                }   
             }
-            
         }
 
         if (Input.GetKeyDown(KeyCode.X))
