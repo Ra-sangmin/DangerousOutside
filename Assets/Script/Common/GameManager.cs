@@ -22,7 +22,7 @@ public class GameManager
 
     string vibrationOnkey = "vibrationOn";
     public bool vibrationOn = true;
-    public int selectStageId = 9;
+    public int selectStageId = 10;
     public bool clearOn = false;
 
     string challengeCurrentCntkey = "challengeCurrentCnt";

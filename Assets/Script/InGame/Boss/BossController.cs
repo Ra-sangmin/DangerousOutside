@@ -7,6 +7,7 @@ public class BossController : MonoBehaviour
 {
     [SerializeField] Boss_Chapter_1_AI boss_Chapter_1_AI;
     [SerializeField] Boss_Chapter_2_AI boss_Chapter_2_AI;
+    [SerializeField] Boss_Chapter_3_AI boss_Chapter_3_AI;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,11 @@ public class BossController : MonoBehaviour
             {
                 boss_Chapter_2_AI.gameObject.SetActive(true);
                 boss_Chapter_2_AI.Init();
+            }
+            else if (bossIndex == 3)
+            {
+                boss_Chapter_3_AI.gameObject.SetActive(true);
+                boss_Chapter_3_AI.Init();
             }
 
 
