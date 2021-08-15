@@ -45,6 +45,12 @@ public class StageIconDataManager
             new StageIconData(7, new Vector2(0,588)  ,1),
             new StageIconData(8, new Vector2(418 ,320)  ,1),
             new StageIconData(9, new Vector2(269,-161)   ,1),
+
+            new StageIconData(10, new Vector2(-268.5f,-163.5f) ,2),
+            new StageIconData(11, new Vector2(-417f,319f)   ,2),
+            new StageIconData(12, new Vector2(0,588)  ,2),
+            new StageIconData(13, new Vector2(418 ,320)  ,2),
+            new StageIconData(14, new Vector2(269,-161)   ,2),
         };
         UserDataSet();
 
@@ -55,6 +61,11 @@ public class StageIconDataManager
     void UserDataSet()
     {
         string jsonStr = PlayerPrefs.GetString(stageIconSaveDatakey, string.Empty);
+
+#if UNITY_EDITOR
+        jsonStr = string.Empty;
+#endif
+
         if (jsonStr != string.Empty)
         {
             stageIconSaveData = JsonUtility.FromJson<StageIconSaveData>(jsonStr);
@@ -141,6 +152,12 @@ public class StageIconDataManager
         return stageDataList
                     .Where(data => data.pageIndex == page)
                     .ToList();
+    }
+
+    public StageIconData GetStageData(int id)
+    {
+        return stageDataList
+                .FirstOrDefault(data => data.id == id);
     }
 }
 

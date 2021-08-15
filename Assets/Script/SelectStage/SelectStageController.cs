@@ -16,6 +16,8 @@ public class SelectStageController : MonoBehaviour
     [SerializeField] RectTransform bgPanel;
     [SerializeField] RectTransform backBtn;
 
+    int chapterIndex = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +25,25 @@ public class SelectStageController : MonoBehaviour
         SoundManager.Instance.PlayBGM(BGMEnum.StageSelect);
         BtnActiveSet();
         backBtn.gameObject.SetActive(false);
+
+        if (GameManager.Ins.selectStageId != -1)
+        {
+            ChapterInit();
+        }
     }
 
     void EventSet()
     {
         stagePageController.startEvent += GameStartOn;
+    }
+
+    void ChapterInit() 
+    {
+        chapterIndex = GameManager.Ins.selectStageId / 5;
+        BtnActiveSet();
+        enter_Btn.gameObject.SetActive(true);
+        IdleAnimPlay();
+        BGPosSet();
     }
 
     public void SettingBtnClickOn()
@@ -38,13 +54,6 @@ public class SelectStageController : MonoBehaviour
 
     void GameStartOn()
     {
-        //Debug.LogWarning("start ON1 " + GameManager.Ins.challengeCurrentCnt);
-
-        //if (GameManager.Ins.challengeCurrentCnt <= 0)
-          //  return;
-
-        //challengeCntController.CountAddOn(-1);
-
         GameManager.Ins.StageStartOn(stagePageController.stageData.id);        
     }
 
@@ -60,8 +69,6 @@ public class SelectStageController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             mapAnim.Play("C1_to_C2_R");
-            
-            Debug.LogWarning("1");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -69,37 +76,44 @@ public class SelectStageController : MonoBehaviour
         }
     }
 
-    int index = 0;
-
     public void NextBtnClick(bool nextOn)
     {
-        index = nextOn ? index + 1 : index - 1;
+        chapterIndex = nextOn ? chapterIndex + 1 : chapterIndex - 1;
 
         AllDeActive();
 
-        if (index == 0)
+        if (chapterIndex == 0)
         {
             string animName = nextOn == false ? "C2_to_C1_RR" : "C1_R_idle";
 
             mapAnim.Play(animName);
-            bgPanel.anchoredPosition3D = new Vector2(0, 0);
+            
         }
-        else if(index == 1)
+        else if(chapterIndex == 1)
         {
             string animName = nextOn == false ? "C3_to_C2_RR" : "C1_to_C2_RR";
             mapAnim.Play(animName);
-            bgPanel.anchoredPosition3D = new Vector2(-1080, 0);
+            
         }
-        else if (index == 2)
+        else if (chapterIndex == 2)
         {
             string animName = nextOn == false ? "C4_to_C3_RR" : "C2_to_C3_RR";
             mapAnim.Play(animName);
-            bgPanel.anchoredPosition3D = new Vector2(-2160, 0);
+            
         }
+
+        BGPosSet();
 
         StartCoroutine(NextBtnClickOn());
         
     }
+
+    void BGPosSet()
+    {
+        int xValue = chapterIndex * -1080;
+        bgPanel.anchoredPosition3D = new Vector2(xValue, 0);
+    }
+
 
     IEnumerator NextBtnClickOn()
     {
@@ -111,12 +125,12 @@ public class SelectStageController : MonoBehaviour
 
     void BtnActiveSet()
     {
-        if (index == 0)
+        if (chapterIndex == 0)
         {
             l_Btn.gameObject.SetActive(false);
             r_Btn.gameObject.SetActive(true);
         }
-        else if (index == 2)
+        else if (chapterIndex == 2)
         {
             l_Btn.gameObject.SetActive(true);
             r_Btn.gameObject.SetActive(false);
@@ -140,15 +154,15 @@ public class SelectStageController : MonoBehaviour
     {
         AllDeActive();
 
-        if (index == 0)
+        if (chapterIndex == 0)
         {
             mapAnim.Play("C1_toIngame_r");
         }
-        else if (index == 1)
+        else if (chapterIndex == 1)
         {
             mapAnim.Play("C2_toIngame_r");
         }
-        else if (index == 2)
+        else if (chapterIndex == 2)
         {
             mapAnim.Play("C3_toIngame_r");
         }
@@ -158,12 +172,12 @@ public class SelectStageController : MonoBehaviour
 
     IEnumerator EntroBtnClickOn()
     {
+        stagePageController.ChapterLoadReadyOn(chapterIndex);
+
         yield return new WaitForSeconds(1.5f);
         backBtn.gameObject.SetActive(true);
 
-        stagePageController.selectStageOn = true;
-
-        stagePageController.ChapterSelectOn(index);
+        stagePageController.ChapterSelectOn(chapterIndex);
     }
 
 
@@ -173,15 +187,15 @@ public class SelectStageController : MonoBehaviour
 
         AllDeActive();
 
-        if (index == 0)
+        if (chapterIndex == 0)
         {
             mapAnim.Play("C1_toIngame_r_back");
         }
-        else if (index == 1)
+        else if (chapterIndex == 1)
         {
             mapAnim.Play("C2_toIngame_r_back");
         }
-        else if (index == 2)
+        else if (chapterIndex == 2)
         {
             mapAnim.Play("C3_toIngame_r_back");
         }
@@ -200,7 +214,7 @@ public class SelectStageController : MonoBehaviour
 
     void IdleAnimPlay()
     {
-        switch (index)
+        switch (chapterIndex)
         {
             case 0: mapAnim.Play("C1_R_idle"); break;
             case 1: mapAnim.Play("C2_R_idle"); break;

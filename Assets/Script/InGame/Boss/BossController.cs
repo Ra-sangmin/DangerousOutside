@@ -5,33 +5,25 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    [SerializeField] Boss_Chapter_1_AI boss_Chapter_1_AI;
-    [SerializeField] Boss_Chapter_2_AI boss_Chapter_2_AI;
-    [SerializeField] Boss_Chapter_3_AI boss_Chapter_3_AI;
+    [SerializeField] List<Base_Boss_Chapter> bossChpaterAIList = new List<Base_Boss_Chapter>();
 
     // Start is called before the first frame update
     void Start()
     {
+        foreach (var bossChpaterAI in bossChpaterAIList)
+        {
+            bossChpaterAI.gameObject.SetActive(false);
+        }
+
         if ((GameManager.Ins.selectStageId + 1) % 5 == 0)
         {
-            int bossIndex = (GameManager.Ins.selectStageId + 1) / 5;
-            if (bossIndex == 1)
-            {
-                boss_Chapter_1_AI.gameObject.SetActive(true);
-                boss_Chapter_1_AI.Init();
-            }
-            else if (bossIndex == 2)
-            {
-                boss_Chapter_2_AI.gameObject.SetActive(true);
-                boss_Chapter_2_AI.Init();
-            }
-            else if (bossIndex == 3)
-            {
-                boss_Chapter_3_AI.gameObject.SetActive(true);
-                boss_Chapter_3_AI.Init();
-            }
+            int bossIndex = ((GameManager.Ins.selectStageId + 1) / 5) -1;
 
-
+            if (bossIndex > -1)
+            {
+                bossChpaterAIList[bossIndex].gameObject.SetActive(true);
+                bossChpaterAIList[bossIndex].Init();
+            }
         }
     }
 

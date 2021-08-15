@@ -22,7 +22,8 @@ public class GameManager
 
     string vibrationOnkey = "vibrationOn";
     public bool vibrationOn = true;
-    public int selectStageId = 10;
+    public int beforeSelectStageId = -1;
+    public int selectStageId = -1;
     public bool clearOn = false;
 
     string challengeCurrentCntkey = "challengeCurrentCnt";
@@ -135,6 +136,8 @@ public class GameManager
 
     public void StageStartOn(int selectStageId, bool tutorialSkip = false)
     {
+        beforeSelectStageId = this.selectStageId;
+
         this.selectStageId = selectStageId;
         CountAddOn(-1);
         

@@ -7,29 +7,33 @@ using UnityEngine.UI;
 
 public class StageIcon : MonoBehaviour
 {
-    private StageIconData stageData;
+    public StageIconData stageData;
 
     [SerializeField] private AtlasImage bgImage;
     [SerializeField] private AtlasImage findImage;
     [SerializeField] private Text stageNumText;
 
     [SerializeField] private RectTransform starIconPanel;
-    [SerializeField] private List<AtlasImage> starIconList = new List<AtlasImage>();
+    [SerializeField] private List<Animator> starIconList = new List<Animator>();
 
     public UnityAction<StageIconData> clickEvent;
+
+    public Animator amin;
 
     // Start is called before the first frame update
     void Start()
     {
-        //DataSet();
     }
 
-    public void DataSet(StageIconData stageData)
+    public void DataSet(StageIconData stageData , UnityAction<StageIconData> clickEvent)
     {
         this.stageData = stageData;
+
+        this.clickEvent = clickEvent;
+
         stageNumText.text = (stageData.id+1).ToString();
 
-        findImage.gameObject.SetActive(false);
+        //findImage.gameObject.SetActive(false);
         stageNumText.fontSize = 72;
 
         var userData = stageData.stageIconDataUserData;
@@ -64,7 +68,61 @@ public class StageIcon : MonoBehaviour
                 bgImage.spriteName = "Img_Stage_poiont_unfind";
             }
         }*/
+
+        AnimSet();
     }
+
+    void AnimSet()
+    {
+        var userData = stageData.stageIconDataUserData;
+
+        string animName = string.Empty;
+
+        switch (stageData.pageIndex) 
+        {
+            case 0:
+                animName = userData.starCount != 0 ? "Chapter1_stage_stars_yellow" : "Chapter_stage_stars_gray";
+                break;
+            case 1:
+                animName = userData.starCount != 0 ? "Congal_duck" : "Congal_help";
+                break;
+            case 2:
+                animName = userData.starCount != 0 ? "Congal_white" : GetChapter3IconAnim(stageData.id);
+                break;
+        }
+
+        amin.Play(animName);
+
+        StartCoroutine(StarReset());
+    }
+
+
+    string GetChapter3IconAnim(int stageId)
+    {
+        string animName = string.Empty;
+
+        switch (stageId)
+        {
+            case 10:
+                animName = "Congal_bat";
+                break;
+            case 11:
+                animName = "Congal_devil";
+                break;
+            case 12:
+                animName = "Congal_ghost";
+                break;
+            case 13:
+                animName = "Congal_skeleton";
+                break;
+            case 14:
+                animName = "Congal_wolf";
+                break;
+        }
+
+        return animName;
+    }
+
 
     public void ClickOn()
     {
@@ -73,6 +131,39 @@ public class StageIcon : MonoBehaviour
             clickEvent(stageData);
         }
     }
+
+    public void ClearEventOn()
+    {
+        StartCoroutine(StarReset(true , 0.2f));
+    }
+
+    public void StarAllInactive()
+    {
+        for (int i = 0; i < starIconList.Count; i++)
+        {
+            starIconList[i].Play("ready");
+        }
+    }
+
+    IEnumerator StarReset(bool eventOn = false, float delay = 0)
+    {
+        var userData = stageData.stageIconDataUserData;
+
+        for (int i = 0; i < starIconList.Count; i++)
+        {
+            string animName = "ready";
+
+            if (i < userData.starCount)
+            {
+                animName = eventOn ? "clear" : "clear_loop";
+            }
+
+            starIconList[i].Play(animName);
+
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
 
     // Update is called once per frame
     void Update()

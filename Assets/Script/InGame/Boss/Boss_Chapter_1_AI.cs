@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_Chapter_1_AI : MonoBehaviour
+public class Boss_Chapter_1_AI : Base_Boss_Chapter
 {
-    [SerializeField] RectTransform bossImage;
     [SerializeField] Animator bossAnim;
     [SerializeField] TileController tileController;
     private Tile currentTile;
@@ -15,7 +14,7 @@ public class Boss_Chapter_1_AI : MonoBehaviour
     private float delayTime = 2;
     private float skillDelay = 5;
 
-    public void Init()
+    public override void Init()
     {
         StartCoroutine(StartOn());
     }

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_Chapter_2_AI : MonoBehaviour
+public class Boss_Chapter_2_AI : Base_Boss_Chapter
 {
     [SerializeField] Animator bossAnim;
     [SerializeField] Animator waveAnim;
     [SerializeField] Animator barAnim;
 
     // Start is called before the first frame update
-    public void Init()
+    public override void Init()
     {
         StartCoroutine(StartOn());
     }
@@ -30,54 +30,54 @@ public class Boss_Chapter_2_AI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            bossAnim.Play("Chapter2_boss_bump");
-            waveAnim.Play("Chapter2_stage_wave_boss");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    bossAnim.Play("Chapter2_boss_bump");
+        //    waveAnim.Play("Chapter2_stage_wave_boss");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            int ranIndex = Random.Range(0, 3);
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    int ranIndex = Random.Range(0, 3);
 
-            string text = string.Empty;
+        //    string text = string.Empty;
 
-            switch (ranIndex)
-            {
-                case 0: text = "C";
-                    break;
-                case 1: text = "O";
-                    break;
-                case 2: text = "N";
-                    break;
-            }
+        //    switch (ranIndex)
+        //    {
+        //        case 0: text = "C";
+        //            break;
+        //        case 1: text = "O";
+        //            break;
+        //        case 2: text = "N";
+        //            break;
+        //    }
 
-            string animName = string.Format("Chapter2_boss_human{0}", text);
+        //    string animName = string.Format("Chapter2_boss_human{0}", text);
 
-            bossAnim.Play(animName);
-        }
+        //    bossAnim.Play(animName);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            barAnim.Play("Chapter2_boss_bar_down");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    barAnim.Play("Chapter2_boss_bar_down");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            bossAnim.Play("Chapter2_boss_skill");
-            waveAnim.Play("Chapter2_stage_wave_boss");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    bossAnim.Play("Chapter2_boss_skill");
+        //    waveAnim.Play("Chapter2_stage_wave_boss");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            bossAnim.Play("Chapter2_boss_r2w");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha5))
+        //{
+        //    bossAnim.Play("Chapter2_boss_r2w");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            bossAnim.Play("Chapter2_boss_disappear");
-            waveAnim.Play("Chapter2_stage_wave_boss");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha6))
+        //{
+        //    bossAnim.Play("Chapter2_boss_disappear");
+        //    waveAnim.Play("Chapter2_stage_wave_boss");
+        //}
     }
 
 }
