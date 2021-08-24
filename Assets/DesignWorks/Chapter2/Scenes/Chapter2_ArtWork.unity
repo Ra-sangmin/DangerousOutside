@@ -1654,6 +1654,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chapter2_stage_duck
       objectReference: {fileID: 0}
+    - target: {fileID: 864701881173912185, guid: 68406decb77d97b4abffdd5531bc201e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68406decb77d97b4abffdd5531bc201e, type: 3}
 --- !u!1001 &2963849927314227015
@@ -1773,6 +1778,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chapter2_boss
       objectReference: {fileID: 0}
+    - target: {fileID: 2963849926749174475, guid: 8bf8c881ecbb7e84399dc45d93518198,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bf8c881ecbb7e84399dc45d93518198, type: 3}
 --- !u!1001 &3663147934550695567
@@ -1786,6 +1796,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chapter2_bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3663147934330721194, guid: 9a84fdb33c7951d439be327dfe9bcc2f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3663147934869599456, guid: 9a84fdb33c7951d439be327dfe9bcc2f,
         type: 3}
@@ -2029,6 +2044,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chapter2_Stage_empty
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416439850529030510, guid: 988f13b1268a5df4196b1df3775d2425,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7416439852115154392, guid: 988f13b1268a5df4196b1df3775d2425,
         type: 3}
