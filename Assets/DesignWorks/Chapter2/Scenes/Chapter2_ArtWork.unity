@@ -1906,6 +1906,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chapter2_things
       objectReference: {fileID: 0}
+    - target: {fileID: 5873906077303819346, guid: 56c12dee35d05ab458187bea18e50766,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5873906077303819351, guid: 56c12dee35d05ab458187bea18e50766,
         type: 3}
       propertyPath: m_LocalPosition.x
