@@ -23,7 +23,7 @@ public class GameManager
     string vibrationOnkey = "vibrationOn";
     public bool vibrationOn = true;
     public int beforeSelectStageId = -1;
-    public int selectStageId = -1;
+    public int selectStageId = 14;
     public bool clearOn = false;
 
     string challengeCurrentCntkey = "challengeCurrentCnt";
@@ -38,6 +38,8 @@ public class GameManager
     public bool tutorialOn = false;
 
     public TileController tileController;
+
+    public string targetScene;
 
     private GameManager()
     {
@@ -164,7 +166,10 @@ public class GameManager
                 tutorialOn = true;
             }
         }
-        SceneManager.LoadScene(targetSceneName);
+
+        targetScene = targetSceneName;
+
+        SceneManager.LoadScene("Loading");
     }
     public void SetPause(bool pause)
     {

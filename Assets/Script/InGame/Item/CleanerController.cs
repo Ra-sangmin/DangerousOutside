@@ -17,6 +17,9 @@ public class CleanerController : BaseItem
 
     public GameObject ambulanceObj;
 
+    public Animator congalAnim;
+    public Animator curtainAnim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -122,6 +125,42 @@ public class CleanerController : BaseItem
     void Update()
     {
         CheckCleaning();
+        InputCheck();
+    }
+
+    void InputCheck()
+    {
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    congalAnim.gameObject.SetActive(true);
+        //    congalAnim.Play("Congal_new");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+            
+        //    congalAnim.Play("Congal_move");
+        //    congalAnim.transform.parent.GetComponent<RectTransform>().DOAnchorPosX(-74, 1.0f).SetDelay(0.8f);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    congalAnim.Play("Congal_move");
+        //    congalAnim.transform.parent.GetComponent<RectTransform>().DOAnchorPosX(-148, 1).SetDelay(0.8f);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    Vector3 pos = congalAnim.transform.parent.GetComponent<RectTransform>().anchoredPosition3D;
+        //    pos.x = 0;
+        //    congalAnim.transform.parent.GetComponent<RectTransform>().anchoredPosition3D = pos;
+
+        //    congalAnim.Play("Congal_enter");
+            
+        //    curtainAnim.Play("Skill_hospital_curtain");
+        //}
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            curtainAnim.Play("Skill_hospital_doctor_home2");
+        }
+        
     }
 
     void CheckCleaning()

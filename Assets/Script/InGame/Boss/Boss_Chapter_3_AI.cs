@@ -5,11 +5,13 @@ using UnityEngine;
 public class Boss_Chapter_3_AI : Base_Boss_Chapter
 {
     [SerializeField] Animator bossAnim;
+    [SerializeField] Animator bossEndingAnim;
 
     // Start is called before the first frame update
     public override void Init()
     {
         StartCoroutine(StartOn());
+        bossEndingAnim.gameObject.SetActive(false);
     }
 
     IEnumerator StartOn()
@@ -21,15 +23,51 @@ public class Boss_Chapter_3_AI : Base_Boss_Chapter
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //{
-        //    bossAnim.Play("C3_Boss_skill");
-        //}
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            bossAnim.Play("C3_Boss_skill");
+        }
 
-        //if (Input.GetKeyDown(KeyCode.Alpha2))
-        //{
-        //    bossAnim.Play("C3_clear");
-        //}
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            StartCoroutine(EndOn());
+        }
+    }
+
+    IEnumerator EndOn()
+    {
+        bossAnim.Play("C3_clear");
+
+        yield return new WaitForEndOfFrame();
+
+        //bossAnim.GetCurrentAnimatorStateInfo(0).normalizedTime
+
+        yield return new WaitUntil(()=> EndCheck(bossAnim, "C3_clear") );
+        //bossAnim.gameObject.SetActive(true);
+        bossEndingAnim.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(5);
+
+        bossEndingAnim.gameObject.SetActive(false);
+
+    }
+
+    bool EndCheck(Animator anim , string name)
+    {
+        bool endOn = false;
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName(name) == false || anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+        {
+            endOn = true;
+        }
+
+        return endOn;
     }
 
 }
+
