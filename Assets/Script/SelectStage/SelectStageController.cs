@@ -8,7 +8,7 @@ public class SelectStageController : MonoBehaviour
 {
     public ChallengeCntController challengeCntController;
     public StagePageController stagePageController;
-    public SettingPopup settingPopup;
+    
     [SerializeField] Animator mapAnim;
     [SerializeField] RectTransform l_Btn;
     [SerializeField] RectTransform r_Btn;
@@ -37,6 +37,12 @@ public class SelectStageController : MonoBehaviour
         stagePageController.startEvent += GameStartOn;
     }
 
+    private void OnEnable()
+    {
+        ChapterInit();
+    }
+
+
     void ChapterInit() 
     {
         chapterIndex = GameManager.Ins.selectStageId / 5;
@@ -44,12 +50,6 @@ public class SelectStageController : MonoBehaviour
         enter_Btn.gameObject.SetActive(true);
         IdleAnimPlay();
         BGPosSet();
-    }
-
-    public void SettingBtnClickOn()
-    {
-        SoundManager.Instance.PlaySe(SeEnum.Touch);
-        settingPopup.gameObject.SetActive(true);
     }
 
     void GameStartOn()
