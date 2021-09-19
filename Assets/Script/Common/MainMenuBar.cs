@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class MainMenuBar : MonoBehaviour
 {
@@ -38,8 +39,8 @@ public class MainMenuBar : MonoBehaviour
             mainMenuPanelList[i].gameObject.SetActive(mainTabStatus == i);
         }
 
-        selectOnImage.transform.position = mainMenuBtnList[mainTabStatus].transform.position;
-
+        Vector2 pos = mainMenuBtnList[mainTabStatus].transform.position;
+        selectOnImage.DOMove(pos, 0.5f).SetEase(Ease.OutBack);
     }
 
 
