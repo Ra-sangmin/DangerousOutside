@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class CardItemUpgradePopup : MonoBehaviour
 {
@@ -93,6 +94,11 @@ public class CardItemUpgradePopup : MonoBehaviour
         stuffCard.DataSet(cardGrade);
         stuffCard.gameObject.SetActive(true);
         stuffCard.GetComponent<Button>().onClick.AddListener(() => CardRemoveBtnClick(stuffCard));
+
+        RectTransform rect = stuffCard.GetComponent<RectTransform>();
+        Vector3 pos = rect.anchoredPosition3D;
+
+        rect.DOAnchorPosY(pos.y + 20, 0.15f).SetLoops(2,LoopType.Yoyo);
 
         stuffCardList.Add(stuffCard);
 
