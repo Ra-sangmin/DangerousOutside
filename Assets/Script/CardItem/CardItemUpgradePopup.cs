@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class CardItemUpgradePopup : MonoBehaviour
+public class CardItemUpgradePopup : BaseCardItem
 {
     Dictionary<CardGrade, int> cardCntDic = new Dictionary<CardGrade, int>();
 
     [SerializeField] Text normalCntText;
     [SerializeField] Text rareCntText;
+    [SerializeField] Text specialCntText;
 
     [SerializeField] StuffCard stuffCardPrefab;
     [SerializeField] RectTransform stuffCardParant;
@@ -25,18 +26,29 @@ public class CardItemUpgradePopup : MonoBehaviour
 
     LvDataManager lvDataManager = new LvDataManager();
 
+    [SerializeField] Image stempImage;
+
+    [SerializeField] Text needMoneyText;
+
     // Start is called before the first frame update
     void Start()
     {
-        Init();
+
     }
 
+    public void DataSet(CardItem cardItem)
+    {
+        cardColorEnum = cardItem.cardColorEnum;
+        BGSet();
+        Init();
+    }
     void Init()
     {
         cardCntDic = new Dictionary<CardGrade, int>()
         {
             { CardGrade.Normal, 8},
-            { CardGrade.Rare, 3}
+            { CardGrade.Rare, 5},
+            { CardGrade.Special, 2}
         };
         CntTextSet();
 
@@ -59,7 +71,7 @@ public class CardItemUpgradePopup : MonoBehaviour
                     rareCntText.text = string.Format("{0}장", cardCnt.Value);
                     break;
                 case CardGrade.Special:
-                    //normalCntText.text = string.Format("{0}장", cardCnt.Value);
+                    specialCntText.text = string.Format("{0}장", cardCnt.Value);
                     break;
             }
         }
@@ -132,6 +144,8 @@ public class CardItemUpgradePopup : MonoBehaviour
 
         float fillAmount = (float)currentLvExp / lvData.addExp;
         SliderFillImage.fillAmount = fillAmount;
+
+        needMoneyText.text = (GetStuffCardExp() * 10).ToString();
     }
 
     int GetStuffCardExp()
@@ -149,6 +163,7 @@ public class CardItemUpgradePopup : MonoBehaviour
                     resultExp += 10;
                     break;
                 case CardGrade.Special:
+                    resultExp += 20;
                     break;
             }
         }
@@ -159,6 +174,15 @@ public class CardItemUpgradePopup : MonoBehaviour
     public void PopupCloseClickOn()
     {
         gameObject.SetActive(false);
+    }
+    
+    public void OKBtnClick()
+    {
+        stempImage.gameObject.SetActive(true);
+
+        stempImage.transform.DOScale(0.5f, 0.2f);
+
+        stempImage.DOFade(0, 0.2f).SetDelay(1);
     }
 }
 

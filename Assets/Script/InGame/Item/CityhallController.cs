@@ -21,6 +21,8 @@ public class CityhallController : BaseItem
 
     [SerializeField] Image fillImage;
 
+    [SerializeField] RectTransform coopangParant;
+
     // Start is called before the first frame update
     void Start()
     {   
@@ -78,8 +80,6 @@ public class CityhallController : BaseItem
 
     public void BuildingClick(Building building)
     {
-        Debug.LogWarning("BuildingClick = " );
-
         if (!HomeCheck(building))
             return;
 
@@ -91,8 +91,6 @@ public class CityhallController : BaseItem
 
         GiftOn(building , -1);
     }
-
-    
 
     public void AllHomeBuildingGiftOn()
     {
@@ -109,26 +107,26 @@ public class CityhallController : BaseItem
 
         GiftCntAdd(addCnt);
 
-        GameObject giftCarObj = Instantiate(Resources.Load("InGame/Item/CoopangObj"),transform) as GameObject;
-        //Vector3 buildingPos = building.transform.position;
-
+        GameObject giftCarObj = Instantiate(Resources.Load("InGame/Item/CoopangObj"), coopangParant) as GameObject;
+        
         Vector3 targetPos = building.transform.position;
-        targetPos.x += 23; 
+        targetPos.y -= 1;
+        RectTransform giftCarObjRect = giftCarObj.GetComponent<RectTransform>();
 
-        float xValue = 550;
-        float yValue = targetPos.y-60;
-        giftCarObj.transform.position = new Vector2(xValue, yValue);
+        Vector3 currentPos = giftCarObjRect.transform.position;
+
+        giftCarObj.transform.position = new Vector3(currentPos.x, targetPos.y , currentPos.z);
 
         giftCarObj.transform.DOMoveX(targetPos.x, 2).OnComplete(() =>
         {
             GameObject supplyGaugeOBJ = Instantiate(Resources.Load("InGame/Item/SupplyGaugeOBJ"), transform) as GameObject;
-            supplyGaugeOBJ.transform.position = new Vector2(targetPos.x, yValue + 30);
+            supplyGaugeOBJ.transform.position = new Vector3(targetPos.x, targetPos.y + 1.1f , targetPos.z);
 
             building.ReviceFood();
 
             giftCarObj.transform.rotation = Quaternion.Euler(0, 180, 0);
 
-            giftCarObj.transform.DOMoveX(xValue, 2).SetDelay(1).OnComplete(() =>
+            giftCarObj.transform.DOMoveX(coopangParant.transform.position.x, 2).SetDelay(1).OnComplete(() =>
             {
                 giftCarObj.gameObject.SetActive(false);
             });

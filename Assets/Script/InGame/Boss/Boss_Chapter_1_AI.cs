@@ -104,8 +104,7 @@ public class Boss_Chapter_1_AI : Base_Boss_Chapter
     {
         float curentY = bossAnim.transform.position.y;
 
-        Vector2 targetPos = currentTile.transform.position;
-        targetPos.y -= 80;
+        Vector3 targetPos = currentTile.transform.position;
 
         bool moveUp = targetPos.y > curentY;
 

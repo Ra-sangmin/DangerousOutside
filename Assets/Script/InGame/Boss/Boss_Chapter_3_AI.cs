@@ -45,15 +45,7 @@ public class Boss_Chapter_3_AI : Base_Boss_Chapter
 
         yield return new WaitForEndOfFrame();
 
-        //bossAnim.GetCurrentAnimatorStateInfo(0).normalizedTime
-
         yield return new WaitUntil(()=> EndCheck(bossAnim, "C3_clear") );
-        //bossAnim.gameObject.SetActive(true);
-        bossEndingAnim.gameObject.SetActive(true);
-
-        yield return new WaitForSeconds(5);
-
-        bossEndingAnim.gameObject.SetActive(false);
 
     }
 

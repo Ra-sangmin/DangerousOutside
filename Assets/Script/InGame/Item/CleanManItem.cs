@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class CleanManItem : BaseItem, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     private CleanMan cleanManObj;
+    private RectTransform cleanManObjRect;
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +27,11 @@ public class CleanManItem : BaseItem, IPointerDownHandler, IDragHandler, IPointe
 
         cleanManObj = Instantiate(Resources.Load<CleanMan>("InGame/Item/CleanMan"), transform);
         cleanManObj.tileController = tileController;
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
-        cleanManObj.transform.position = new Vector3(worldPos.x, worldPos.y + 70);
+        cleanManObjRect = cleanManObj.GetComponent<RectTransform>();
+
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
+        cleanManObj.transform.position = new Vector3(worldPos.x, worldPos.y + 70, worldPos.z);
+        cleanManObjRect.anchoredPosition3D = new Vector2(0, 100);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -35,8 +39,9 @@ public class CleanManItem : BaseItem, IPointerDownHandler, IDragHandler, IPointe
         if (!CheckCost(false) || cleanManObj == null)
             return;
 
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
-        cleanManObj.transform.position = new Vector3(worldPos.x, worldPos.y + 100);
+        Vector2 pos = cleanManObjRect.anchoredPosition3D;
+        pos += eventData.delta;
+        cleanManObjRect.anchoredPosition3D = pos;
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -45,7 +50,6 @@ public class CleanManItem : BaseItem, IPointerDownHandler, IDragHandler, IPointe
             return;
 
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
-        worldPos.y += 100;
 
         Tile tile = null;
         float distance = 100;
