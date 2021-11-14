@@ -1344,8 +1344,8 @@ MonoBehaviour:
   currentCnt: 10
   maxCnt: 10
   bgImageList:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8573996938040133437}
+  - {fileID: 5874351955370569014}
 --- !u!1 &7589078830926734835
 GameObject:
   m_ObjectHideFlags: 0

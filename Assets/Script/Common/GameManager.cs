@@ -51,6 +51,7 @@ public class GameManager
         vibrationOn = PlayerPrefs.GetInt(vibrationOnkey, 1) == 0 ? false : true;
         tutorialState = PlayerPrefs.GetInt(tutorialStatekey, 0);
         tutorialState = 5;
+        challengeCurrentCnt = 5;
     }
 
     public void VibrationSet(bool value)

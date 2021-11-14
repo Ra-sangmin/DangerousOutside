@@ -36,11 +36,20 @@ public class MainMenuBar : MonoBehaviour
     {
         for (int i = 0; i < mainMenuPanelList.Count; i++)
         {
+            if (i == 1)
+            {
+                continue;
+            }
             mainMenuPanelList[i].gameObject.SetActive(mainTabStatus == i);
         }
 
         Vector2 pos = mainMenuBtnList[mainTabStatus].transform.position;
         selectOnImage.DOMove(pos, 0.5f).SetEase(Ease.OutBack);
+
+        //if (mainTabStatus == 1)
+        //{
+        //    mainMenuPanelList[1].GetComponent<SelectStageController>().IdleAnimPlay();
+        //}
     }
 
 

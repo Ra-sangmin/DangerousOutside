@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-    private GameObject banAreaObj;
+    private RectTransform banAreaObj;
     List<BanAreaData> banAreaDataList = new List<BanAreaData>();
 
     // Start is called before the first frame update
@@ -22,12 +22,22 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        SoundManager.Instance.PlaySe(SeEnum.Touch);
+
         if (!CheckCost(false))
             return;
       
-        banAreaObj = Instantiate(Resources.Load("InGame/Item/BanAreaObj"),transform) as GameObject;
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
-        banAreaObj.transform.position = new Vector3(worldPos.x, worldPos.y);
+        banAreaObj = Instantiate(Resources.Load<RectTransform>("InGame/Item/BanAreaObj"),transform);
+
+        //Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
+        //worldPos.z = 0;
+        banAreaObj.anchoredPosition3D = Vector3.zero;
+        //cleanManObjRect.anchoredPosition3D = new Vector2(0, 100);
+
+        //Debug.LogWarning(banAreaObj.transform.position);
+
+        //Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
+        //banAreaObj.transform.position = new Vector3(worldPos.x, worldPos.y);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -35,8 +45,12 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
         if (!CheckCost(false) || banAreaObj == null)
             return;
 
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
-        banAreaObj.transform.position = worldPos;
+        Vector2 pos = banAreaObj.anchoredPosition3D;
+        pos += eventData.delta;
+        banAreaObj.anchoredPosition3D = pos;
+
+        //Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
+        //banAreaObj.transform.position = worldPos;
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -82,8 +96,8 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
         AddCost();
 
         Vector2 tilePos = tile.transform.position;
-        tilePos += new Vector2(26, -21);
-        banAreaObj.transform.position = tilePos;
+        //tilePos += new Vector2(26, -21);
+        banAreaObj.transform.position = new Vector3(tilePos.x, tilePos.y, banAreaObj.transform.position.z);
 
         int xMinVaue = (int)tile.pos.x - 2;
         int xMaxVaue = (int)tile.pos.x + 2;
@@ -115,7 +129,7 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
         BanAreaData banAreaData = new BanAreaData();
         banAreaData.deleteTime = 10;
         banAreaData.banTileList = banTileList;
-        banAreaData.banAreaObj = banAreaObj;
+        banAreaData.banAreaObj = banAreaObj.gameObject;
         banAreaDataList.Add(banAreaData);
 
         //금지구역에 있는 주민 체크

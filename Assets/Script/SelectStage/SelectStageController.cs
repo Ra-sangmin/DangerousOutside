@@ -45,7 +45,7 @@ public class SelectStageController : MonoBehaviour
 
     void ChapterInit() 
     {
-        chapterIndex = GameManager.Ins.selectStageId / 5;
+        //chapterIndex = GameManager.Ins.selectStageId / 5;
         BtnActiveSet();
         enter_Btn.gameObject.SetActive(true);
         IdleAnimPlay();
@@ -212,7 +212,7 @@ public class SelectStageController : MonoBehaviour
         IdleAnimPlay();
     }
 
-    void IdleAnimPlay()
+    public void IdleAnimPlay()
     {
         switch (chapterIndex)
         {
