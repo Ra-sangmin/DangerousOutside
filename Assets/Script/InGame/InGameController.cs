@@ -97,11 +97,11 @@ public class InGameController : MonoBehaviour
     public void RestartOn()
     {
         SoundManager.Instance.PlaySe(SeEnum.Touch);
-        if (GameManager.Ins.challengeCurrentCnt <= 0)
-        {
-            WarningManager.Instance.WarningSet("도전 횟수가 부족합니다.");
-            return;
-        }
+        //if (GameManager.Ins.challengeCurrentCnt <= 0)
+        //{
+        //    WarningManager.Instance.WarningSet("도전 횟수가 부족합니다.");
+        //    return;
+        //}
             
 
         PauseOn(false);
@@ -111,11 +111,11 @@ public class InGameController : MonoBehaviour
     public void NextStageStartOn()
     {
         SoundManager.Instance.PlaySe(SeEnum.Touch);
-        if (GameManager.Ins.challengeCurrentCnt <= 0)
-        {
-            WarningManager.Instance.WarningSet("도전 횟수가 부족합니다.");
-            return;
-        }
+        //if (GameManager.Ins.challengeCurrentCnt <= 0)
+        //{
+        //    WarningManager.Instance.WarningSet("도전 횟수가 부족합니다.");
+        //    return;
+        //}
 
         PauseOn(false);
         GameManager.Ins.StageStartOn(GameManager.Ins.selectStageId+1);
