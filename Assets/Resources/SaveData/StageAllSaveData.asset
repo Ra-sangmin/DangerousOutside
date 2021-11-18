@@ -234,7 +234,7 @@ MonoBehaviour:
     - pos: {x: 6, y: 2}
       tile_Type: 1
     - pos: {x: 6, y: 3}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 6, y: 4}
       tile_Type: 1
     - pos: {x: 6, y: 5}
@@ -256,8 +256,8 @@ MonoBehaviour:
       pos: {x: 3, y: 4}
       buildingType: 0
       buildSize: {x: 1, y: 1}
-      isRead: 1
-      chitizen_normal_num: 5
+      isRead: 0
+      chitizen_normal_num: 6
       chitizen_young_num: 0
       chitizen_old_num: 0
       chitizen_The_num: 0
@@ -266,16 +266,7 @@ MonoBehaviour:
       buildingType: 0
       buildSize: {x: 1, y: 1}
       isRead: 1
-      chitizen_normal_num: 5
-      chitizen_young_num: 0
-      chitizen_old_num: 0
-      chitizen_The_num: 0
-    - id: 0
-      pos: {x: 3, y: 2}
-      buildingType: 0
-      buildSize: {x: 1, y: 1}
-      isRead: 1
-      chitizen_normal_num: 5
+      chitizen_normal_num: 6
       chitizen_young_num: 0
       chitizen_old_num: 0
       chitizen_The_num: 0
@@ -402,7 +393,7 @@ MonoBehaviour:
       pos: {x: 3, y: 3}
       buildingType: 0
       buildSize: {x: 1, y: 1}
-      isRead: 0
+      isRead: 1
       chitizen_normal_num: 7
       chitizen_young_num: 0
       chitizen_old_num: 0
@@ -525,7 +516,7 @@ MonoBehaviour:
       pos: {x: 1, y: 1}
       buildingType: 0
       buildSize: {x: 1, y: 1}
-      isRead: 1
+      isRead: 0
       chitizen_normal_num: 7
       chitizen_young_num: 0
       chitizen_old_num: 0
@@ -543,7 +534,7 @@ MonoBehaviour:
       pos: {x: 3, y: 1}
       buildingType: 0
       buildSize: {x: 1, y: 1}
-      isRead: 1
+      isRead: 0
       chitizen_normal_num: 7
       chitizen_young_num: 0
       chitizen_old_num: 0

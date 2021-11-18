@@ -38,6 +38,9 @@ public class InGameController : MonoBehaviour
     void EventSet()
     {
         timerController.timeOverEvent = GameFailOn;
+        if (GameManager.Ins.selectStageId == 0)
+            timerController.timeOverEvent = GameWinOn;
+        
         tileController.gameFailOn = GameFailOn;
         tileController.gameWinOn = GameWinOn;
     }
@@ -48,7 +51,10 @@ public class InGameController : MonoBehaviour
     public void Init()
     {
         SoundManager.Instance.PlayBGM(BGMEnum.InGame);
-        timerController.TimeStart(180);
+
+        int timeValue = GameManager.Ins.selectStageId == 0 ? 60 : 180;
+        timerController.TimeStart(timeValue);
+
         tileController.Init();
         taxController.Init();
         cityhallController.Init();
