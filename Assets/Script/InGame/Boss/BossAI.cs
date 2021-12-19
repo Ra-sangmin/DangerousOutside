@@ -61,11 +61,11 @@ public class BossAI : MonoBehaviour
 
         bossAnim.Play("Chapter1_boss_side_stop_anim");
 
-        if (isMini)
-        {
-            MiniBossDestroy();
-        }
-        else
+        //if (isMini)
+        //{
+        //    MiniBossDestroy();
+        //}
+        //else
         {
             delayTime = 2;
             moveOn = false;
