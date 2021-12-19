@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class Citizen : MonoBehaviour
 {
@@ -33,7 +36,7 @@ public class Citizen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        TileCheck();
     }
 
     public Citizen(Citizen_Type citizen_Type, Building home = null,CitizenColor citizenColor = CitizenColor.White)
@@ -53,6 +56,8 @@ public class Citizen : MonoBehaviour
         ResetPos(currentTile);
         AnimReset(CitizenAnimState.Stop);
 
+        currentMoveDelay = 2;
+            
         moveSpeed = 3f;
 
         initOn = true;
@@ -231,11 +236,14 @@ public class Citizen : MonoBehaviour
         Quaternion quaternion = moverightOn == true ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(Vector3.zero);
         transform.rotation = quaternion;
 
-        TileCheck();
-
         moveTween = transform.DOMove(currentTile.transform.position, moveSpeed)
                                 .SetEase(Ease.Linear)
                                 .OnComplete(completeEvent);
+        Observable
+            .Timer(TimeSpan.FromSeconds(moveSpeed * 0.5f))
+            .Subscribe(_ => TileCheck())
+            .AddTo(gameObject);
+
     }
 
     public void GoHome()

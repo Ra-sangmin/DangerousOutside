@@ -58,6 +58,8 @@ public class InGameController : MonoBehaviour
         tileController.Init();
         taxController.Init();
         cityhallController.Init();
+
+        settingPopup.DataSet();
     }
 
     // Update is called once per frame

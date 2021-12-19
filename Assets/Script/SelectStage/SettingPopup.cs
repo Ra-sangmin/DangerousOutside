@@ -11,6 +11,8 @@ public class SettingPopup : MonoBehaviour
     [SerializeField] Toggle vibrationOnToggle;
     [SerializeField] Toggle vibrationOffToggle;
 
+    [SerializeField] Text stageNumText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,12 @@ public class SettingPopup : MonoBehaviour
         seSlider.value = SoundManager.Instance.seValue;
 
         ToggleSet();
+    }
+
+    public void DataSet()
+    {
+        int stageNum = GameManager.Ins.selectStageId + 1;
+        stageNumText.text = string.Format("스테이지 {0}", stageNum);
     }
 
     void ToggleSet()
