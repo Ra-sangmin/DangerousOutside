@@ -49,7 +49,7 @@ public class CleanManItem : BaseItem, IPointerDownHandler, IDragHandler, IPointe
         if (!CheckCost() || cleanManObj == null)
             return;
 
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
+        Vector2 worldPos = cleanManObj.transform.position;
 
         Tile tile = null;
         float distance = 100;

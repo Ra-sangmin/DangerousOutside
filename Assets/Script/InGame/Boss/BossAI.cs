@@ -41,7 +41,8 @@ public class BossAI : MonoBehaviour
         if (isMini)
         {
             yield return BossSkillMoveOn(tempCurrentTile.pos);
-            yield return BossSkillMoveOn(tempCurrentTile.pos);
+            yield return BossSkillMoveOn(tempCurrentTile.pos , false);
+            moveOn = true;
         }
         else
         {
@@ -60,14 +61,22 @@ public class BossAI : MonoBehaviour
 
         bossAnim.Play("Chapter1_boss_side_stop_anim");
 
-        delayTime = 2;
-        moveOn = false;
-        skillDelay = 5;
-
-        if (skillEndOn != null)
+        if (isMini)
         {
-            skillEndOn();
+            MiniBossDestroy();
         }
+        else
+        {
+            delayTime = 2;
+            moveOn = false;
+            skillDelay = 5;
+
+            if (skillEndOn != null)
+            {
+                skillEndOn();
+            }
+        }
+        
     }
 
     IEnumerator BossSkillMoveOn(Vector2 pos, bool tileCheckOn = true, float waitDelay = 0.85f)
@@ -120,8 +129,18 @@ public class BossAI : MonoBehaviour
                 TileReset();
             }
 
+            if (isMini && currentTile.tile_Type == Tile_Type.Blue)
+            {
+                MiniBossDestroy();
+            }
+
             moveOn = false;
         });
+    }
+
+    void MiniBossDestroy()
+    {
+        Destroy(gameObject);
     }
 
     public void TileReset()

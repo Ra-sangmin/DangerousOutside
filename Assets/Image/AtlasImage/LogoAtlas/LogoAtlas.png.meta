@@ -9,7 +9,7 @@ TextureImporter:
       213: -4699736888460914818
     second: Img_Main
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -63,6 +63,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -94,7 +95,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 
+      spriteID: 73913e0c3a78d99f0800000000000000
       internalID: -460062449536394953
       vertices: []
       indices: 
@@ -115,7 +116,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 
+      spriteID: e7fcc71433e27ceb0800000000000000
       internalID: -4699736888460914818
       vertices: []
       indices: 

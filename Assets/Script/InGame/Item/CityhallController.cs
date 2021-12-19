@@ -161,6 +161,8 @@ public class CityhallController : BaseItem
 
     public void GiftCntAdd(int addCnt)
     {
+        int originCnt = gift_currentValue;
+
         gift_currentValue = Mathf.Min(gift_currentValue + addCnt, gift_maxValue);
         GiftCntTextReset();
 
@@ -168,6 +170,11 @@ public class CityhallController : BaseItem
         {
             giftAddCurrentDelay = giftAddMaxDelay;
             FillImageReset();
+        }
+
+        if (gift_currentValue > originCnt )
+        {
+            SoundManager.Instance.PlaySe(SeEnum.Building_enter);
         }
     }
 

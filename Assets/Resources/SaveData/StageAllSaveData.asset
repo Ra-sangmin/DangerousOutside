@@ -261,15 +261,6 @@ MonoBehaviour:
       chitizen_young_num: 0
       chitizen_old_num: 0
       chitizen_The_num: 0
-    - id: 0
-      pos: {x: 1, y: 3}
-      buildingType: 0
-      buildSize: {x: 1, y: 1}
-      isRead: 1
-      chitizen_normal_num: 6
-      chitizen_young_num: 0
-      chitizen_old_num: 0
-      chitizen_The_num: 0
   - stageId: 2
     minClearTime: 90
     minRedCitizen: 5
@@ -398,6 +389,15 @@ MonoBehaviour:
       chitizen_young_num: 0
       chitizen_old_num: 0
       chitizen_The_num: 0
+    - id: 1
+      pos: {x: 4, y: 2}
+      buildingType: 0
+      buildSize: {x: 1, y: 1}
+      isRead: 0
+      chitizen_normal_num: 7
+      chitizen_young_num: 0
+      chitizen_old_num: 0
+      chitizen_The_num: 0
   - stageId: 3
     minClearTime: 90
     minRedCitizen: 7
@@ -505,11 +505,15 @@ MonoBehaviour:
     citizenList:
     - id: 0
       citizenColor: 0
-      pos: {x: 2, y: 3}
+      pos: {x: 1, y: 3}
       citizen_Type: 0
     - id: 1
       citizenColor: 0
-      pos: {x: 1, y: 4}
+      pos: {x: 5, y: 4}
+      citizen_Type: 0
+    - id: 1
+      citizenColor: 0
+      pos: {x: 4, y: 1}
       citizen_Type: 0
     buildingList:
     - id: 0
@@ -526,15 +530,6 @@ MonoBehaviour:
       buildingType: 0
       buildSize: {x: 1, y: 1}
       isRead: 1
-      chitizen_normal_num: 7
-      chitizen_young_num: 0
-      chitizen_old_num: 0
-      chitizen_The_num: 0
-    - id: 2
-      pos: {x: 3, y: 1}
-      buildingType: 0
-      buildSize: {x: 1, y: 1}
-      isRead: 0
       chitizen_normal_num: 7
       chitizen_young_num: 0
       chitizen_old_num: 0
