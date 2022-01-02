@@ -678,6 +678,7 @@ MonoBehaviour:
   anim: {fileID: 4256331052023633857}
   isRead: 0
   foodSlider: {fileID: 1081601732699671662}
+  bodyImage: {fileID: 4256331051784621716}
   currentFoodCnt: 0
   maxFoodCnt: 0
 --- !u!1 &7387735153046482023

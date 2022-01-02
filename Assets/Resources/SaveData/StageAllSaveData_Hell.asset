@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfbf50ffd239541e8bc73511660c259e, type: 3}
-  m_Name: StageAllSaveData
+  m_Name: StageAllSaveData_Hell
   m_EditorClassIdentifier: Assembly-CSharp::StageAllSaveData
   stageList:
   - stageId: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
       pos: {x: 3, y: 4}
       buildingType: 0
       buildSize: {x: 1, y: 1}
-      isRead: 0
+      isRead: 1
       chitizen_normal_num: 6
       chitizen_young_num: 0
       chitizen_old_num: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
       pos: {x: 1, y: 1}
       buildingType: 0
       buildSize: {x: 1, y: 1}
-      isRead: 0
+      isRead: 1
       chitizen_normal_num: 6
       chitizen_young_num: 0
       chitizen_old_num: 0
@@ -511,7 +511,7 @@ MonoBehaviour:
       pos: {x: 1, y: 1}
       buildingType: 0
       buildSize: {x: 1, y: 1}
-      isRead: 0
+      isRead: 1
       chitizen_normal_num: 7
       chitizen_young_num: 0
       chitizen_old_num: 0

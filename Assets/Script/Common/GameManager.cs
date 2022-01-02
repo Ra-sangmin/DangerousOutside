@@ -41,6 +41,8 @@ public class GameManager
 
     public string targetScene;
 
+    public int difficultyStatus = 0;
+
     private GameManager()
     {
         Init();
@@ -139,6 +141,12 @@ public class GameManager
 
     public void StageStartOn(int selectStageId, bool tutorialSkip = false)
     {
+        if (selectStageId > 4)
+        {
+            WarningManager.Instance.WarningSet("준비중 입니다.");
+            return;
+        }
+
         beforeSelectStageId = this.selectStageId;
 
         this.selectStageId = selectStageId;

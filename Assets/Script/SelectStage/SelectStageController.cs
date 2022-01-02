@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class SelectStageController : MonoBehaviour
 {
@@ -17,6 +18,12 @@ public class SelectStageController : MonoBehaviour
     [SerializeField] RectTransform backBtn;
 
     int chapterIndex = 0;
+
+    int difficultyStatus = 0;
+    [SerializeField] List<Toggle> toggleList = new List<Toggle>();
+    [SerializeField] RectTransform difficultyIcon;
+    [SerializeField] Image enterBtnBG;
+    [SerializeField] List<Sprite> enterBtnBGSpriteList = new List<Sprite>();
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +42,28 @@ public class SelectStageController : MonoBehaviour
     void EventSet()
     {
         stagePageController.startEvent += GameStartOn;
+
+        for (int i = 0; i < toggleList.Count; i++)
+        {
+            int index = i;
+
+            toggleList[i].onValueChanged.AddListener(value =>
+            {
+                DifficultyToggleChange(index);
+            });
+        }
+    }
+
+    void DifficultyToggleChange(int index)
+    {
+        difficultyStatus = index;
+
+        float xPos = toggleList[difficultyStatus].GetComponent<RectTransform>().anchoredPosition3D.x;
+        difficultyIcon.DOAnchorPosX(xPos, 0.2f);
+
+        enterBtnBG.sprite = enterBtnBGSpriteList[difficultyStatus];
+
+        GameManager.Ins.difficultyStatus = difficultyStatus;
     }
 
     private void OnEnable()

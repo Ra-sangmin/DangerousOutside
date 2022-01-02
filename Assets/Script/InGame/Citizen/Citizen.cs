@@ -82,10 +82,9 @@ public class Citizen : MonoBehaviour
 
         Transform originParant = this.transform.parent;
 
-        this.transform.parent = tile.transform;
+        this.transform.SetParent(tile.transform);
         this.transform.localPosition = Vector3.zero;
-        this.transform.parent = tile.transform;
-        this.transform.parent = originParant;
+        this.transform.SetParent(originParant);
 
         float size = rect.sizeDelta.x;
 
@@ -234,7 +233,7 @@ public class Citizen : MonoBehaviour
         AnimReset(animState);
 
         Quaternion quaternion = moverightOn == true ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(Vector3.zero);
-        transform.rotation = quaternion;
+        animator.transform.rotation = quaternion;
 
         moveTween = transform.DOMove(currentTile.transform.position, moveSpeed)
                                 .SetEase(Ease.Linear)

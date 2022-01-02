@@ -23,6 +23,9 @@ public class CityhallController : BaseItem
 
     [SerializeField] RectTransform coopangParant;
 
+    bool useDelayOn = false;
+    float useDelay = 0;
+
     // Start is called before the first frame update
     void Start()
     {   
@@ -89,6 +92,12 @@ public class CityhallController : BaseItem
             return;
         }
 
+        if (useDelayOn)
+            return;
+
+        useDelayOn = true;
+        useDelay = 1.5f;
+
         GiftOn(building , -1);
     }
 
@@ -143,8 +152,22 @@ public class CityhallController : BaseItem
     {
         if (initOn == false || GameManager.Ins.resultOn || gift_currentValue == gift_maxValue)
             return;
-
+        GiftUseDelayCheck();
         GiftAddDelayCheck();
+    }
+
+    void GiftUseDelayCheck() 
+    {
+        if (useDelayOn == false)
+            return;
+
+        useDelay -= Time.deltaTime;
+
+        if (useDelay < 0 )
+        {
+            useDelay = 0;
+            useDelayOn = false;
+        }
     }
 
     void GiftAddDelayCheck()

@@ -7,6 +7,7 @@ using DG.Tweening;
 public class Apartment : Building
 {
     [SerializeField] Slider foodSlider;
+    [SerializeField] Image bodyImage;
 
     public float currentFoodCnt;
     public float maxFoodCnt;
@@ -59,6 +60,9 @@ public class Apartment : Building
                 maxCitizenCnt = 40;
                 break;
         }
+
+        Color color = buildingSaveData.isRead ? Color.red : Color.white;
+        bodyImage.color = color;
     }
 
     int GetCitizenCnt()

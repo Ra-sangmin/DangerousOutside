@@ -35,7 +35,7 @@ public class LogoController : MonoBehaviour
 
         if (down)
         {
-            if (pos.y > -300)
+            if (pos.y > -200)
             {
                 pos.y -= 0.2f;
             }
@@ -46,7 +46,7 @@ public class LogoController : MonoBehaviour
         }
         else
         {
-            if (pos.y < 0)
+            if (pos.y < 200)
             {
                 pos.y += 0.2f;
             }

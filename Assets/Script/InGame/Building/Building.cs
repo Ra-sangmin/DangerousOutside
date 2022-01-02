@@ -22,10 +22,9 @@ public class Building : MonoBehaviour
 
         Transform originParant = this.transform.parent;
 
-        this.transform.parent = tile.transform;
+        this.transform.SetParent(tile.transform);
         this.transform.localPosition = Vector3.zero;
-        this.transform.parent = tile.transform;
-        this.transform.parent = originParant;
+        this.transform.SetParent(originParant);
 
         float size = rect.sizeDelta.x;
 

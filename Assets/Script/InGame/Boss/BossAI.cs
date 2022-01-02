@@ -19,6 +19,11 @@ public class BossAI : MonoBehaviour
 
     public bool isMini = false;
 
+    [SerializeField] Slider clickCntSlider;
+    [SerializeField] Text clickCntText;
+    private int clickCnt = 10;
+    private int clickMaxCnt = 10;
+
     private void Awake()
     {
         bossAnim = GetComponent<Animator>();
@@ -61,22 +66,14 @@ public class BossAI : MonoBehaviour
 
         bossAnim.Play("Chapter1_boss_side_stop_anim");
 
-        //if (isMini)
-        //{
-        //    MiniBossDestroy();
-        //}
-        //else
-        {
-            delayTime = 2;
-            moveOn = false;
-            skillDelay = 5;
+        delayTime = 2;
+        moveOn = false;
+        skillDelay = 5;
 
-            if (skillEndOn != null)
-            {
-                skillEndOn();
-            }
+        if (skillEndOn != null)
+        {
+            skillEndOn();
         }
-        
     }
 
     IEnumerator BossSkillMoveOn(Vector2 pos, bool tileCheckOn = true, float waitDelay = 0.85f)
@@ -127,11 +124,6 @@ public class BossAI : MonoBehaviour
             if (tileReset)
             {
                 TileReset();
-            }
-
-            if (isMini && currentTile.tile_Type == Tile_Type.Blue)
-            {
-                MiniBossDestroy();
             }
 
             moveOn = false;
@@ -250,5 +242,23 @@ public class BossAI : MonoBehaviour
         }
     }
 
+    public void ClickOn()
+    {
+        clickCnt = Mathf.Max(--clickCnt , 0);
+        ClickCntReset();
+
+        if (clickCnt == 0)
+        {
+            MiniBossDestroy();
+        }
+    }
+
+    public void ClickCntReset()
+    {
+        clickCntText.text = clickCnt.ToString();
+
+        float sliderValue = clickCnt / (float)clickMaxCnt;
+        clickCntSlider.value = sliderValue;
+    }
 
 }

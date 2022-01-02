@@ -42,5 +42,6 @@ public class Boss_Chapter_1_AI : Base_Boss_Chapter
         miniBossAI.bossAnim.gameObject.SetActive(true);
         miniBossAI.initOn = true;
         miniBossAI.MoveDoing();
+        miniBossAI.ClickCntReset();
     }
 }

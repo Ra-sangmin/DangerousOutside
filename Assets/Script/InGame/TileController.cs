@@ -9,8 +9,7 @@ using System.Linq;
 
 public class TileController : MonoBehaviour
 {
-    [SerializeField] StageAllSaveData stageAllSaveData;
-
+    [SerializeField] List<StageAllSaveData> stageAllSaveDataList = new List<StageAllSaveData>();
     //public const int x_max_value = 18;
     //public const int y_max_value = 30;
 
@@ -55,7 +54,7 @@ public class TileController : MonoBehaviour
 
     public void Init()
     {
-        if (stageAllSaveData == null || GameManager.Ins.tutorialOn)
+        if (GetCurrentSaveData() == null || GameManager.Ins.tutorialOn)
         {
             return;
         }
@@ -65,11 +64,16 @@ public class TileController : MonoBehaviour
             selectStageId = GameManager.Ins.selectStageId;
         }
 
-        stageSaveData = stageAllSaveData.stageList.Find(stageData => stageData.stageId == selectStageId);
+        stageSaveData = GetCurrentSaveData().stageList.Find(stageData => stageData.stageId == selectStageId);
 
         StartCoroutine(TileCreate());
 
         SetBG();
+    }
+
+    StageAllSaveData GetCurrentSaveData()
+    {
+        return stageAllSaveDataList[GameManager.Ins.difficultyStatus];
     }
 
     void SetBG()
