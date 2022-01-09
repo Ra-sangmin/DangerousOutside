@@ -25,6 +25,12 @@ public class SelectStageController : MonoBehaviour
     [SerializeField] Image enterBtnBG;
     [SerializeField] List<Sprite> enterBtnBGSpriteList = new List<Sprite>();
 
+    [SerializeField] Image bgImage;
+    [SerializeField] List<Sprite> bgSpriteList = new List<Sprite>();
+
+    [SerializeField] Image mRImage;
+    [SerializeField] List<Sprite> mRSpriteList = new List<Sprite>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +68,8 @@ public class SelectStageController : MonoBehaviour
         difficultyIcon.DOAnchorPosX(xPos, 0.2f);
 
         enterBtnBG.sprite = enterBtnBGSpriteList[difficultyStatus];
+        bgImage.sprite = bgSpriteList[difficultyStatus];
+        mRImage.sprite = mRSpriteList[difficultyStatus];
 
         GameManager.Ins.difficultyStatus = difficultyStatus;
     }

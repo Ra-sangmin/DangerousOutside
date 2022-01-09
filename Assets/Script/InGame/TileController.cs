@@ -225,6 +225,8 @@ public class TileController : MonoBehaviour
                 citizenPath += "Old_Citizen"; break;
             case Citizen_Type.The:
                 citizenPath += "The_Citizen"; break;
+            case Citizen_Type.Tourist:
+                citizenPath += "Human_tourist"; break;
         }
 
         Citizen citizenOBJ = Instantiate(Resources.Load<Citizen>(citizenPath), citizenParant.transform);

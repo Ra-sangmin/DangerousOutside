@@ -41959,7 +41959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b447aa2cf48644a2b15a238073900fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageAllSaveData: {fileID: 11400000, guid: 3c399819c4bae4e5f9ef5003e861b096, type: 2}
   stageAllSaveDataList:
   - {fileID: 11400000, guid: 3c399819c4bae4e5f9ef5003e861b096, type: 2}
   - {fileID: 11400000, guid: 4e1dcc0422b70c944b55747de47f6ee7, type: 2}

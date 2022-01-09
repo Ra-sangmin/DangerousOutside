@@ -25,7 +25,8 @@ public enum Citizen_Type
     Normal = 0,
     Young,
     Old,
-    The
+    The,
+    Tourist
 }
 
 public enum CitizenColor
