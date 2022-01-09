@@ -9493,6 +9493,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ea7aa731243d98743b04657baee51dbb, type: 3}
   - {fileID: 21300000, guid: 27d631fc56003514c95d76eaefcb99d9, type: 3}
   - {fileID: 21300000, guid: e0792ce7dc751e64eb67ce26a48bde1a, type: 3}
+  bgImage: {fileID: 1600429858}
+  bgSpriteList:
+  - {fileID: 21300000, guid: 5ec97b7cb0076d641909ad12f36ab566, type: 3}
+  - {fileID: 21300000, guid: 9f5537948bdc5ff47be69a9f751c60c6, type: 3}
+  - {fileID: 21300000, guid: 0e94e3a8adaaafa4bb228b11ed281981, type: 3}
+  mRImage: {fileID: 48212096}
+  mRSpriteList:
+  - {fileID: 21300000, guid: 10d87263efb1a444484642d968a33a3f, type: 3}
+  - {fileID: 21300000, guid: 05ab1d943619baf4b8c9669f29273006, type: 3}
+  - {fileID: 21300000, guid: 4f7be1c8805ea0d48bb451b87cb3af59, type: 3}
 --- !u!1 &516470777
 GameObject:
   m_ObjectHideFlags: 0

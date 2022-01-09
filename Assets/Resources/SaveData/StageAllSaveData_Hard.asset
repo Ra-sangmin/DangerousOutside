@@ -369,7 +369,7 @@ MonoBehaviour:
     - id: 0
       citizenColor: 0
       pos: {x: 0, y: 4}
-      citizen_Type: 0
+      citizen_Type: 4
     buildingList:
     - id: 0
       pos: {x: 1, y: 1}
@@ -497,15 +497,15 @@ MonoBehaviour:
     - id: 0
       citizenColor: 0
       pos: {x: 1, y: 3}
-      citizen_Type: 0
+      citizen_Type: 4
     - id: 1
       citizenColor: 0
       pos: {x: 5, y: 4}
-      citizen_Type: 0
+      citizen_Type: 4
     - id: 1
       citizenColor: 0
       pos: {x: 4, y: 1}
-      citizen_Type: 0
+      citizen_Type: 4
     buildingList:
     - id: 0
       pos: {x: 1, y: 1}
