@@ -141,7 +141,7 @@ public class GameManager
 
     public void StageStartOn(int selectStageId, bool tutorialSkip = false)
     {
-        if (selectStageId > 4)
+        if (selectStageId > 9)
         {
             WarningManager.Instance.WarningSet("준비중 입니다.");
             return;

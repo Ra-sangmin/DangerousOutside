@@ -638,7 +638,7 @@ MonoBehaviour:
     tileSize: {x: 7, y: 7}
     tileList:
     - pos: {x: 0, y: 0}
-      tile_Type: 2
+      tile_Type: 1
     - pos: {x: 0, y: 1}
       tile_Type: 1
     - pos: {x: 0, y: 2}
@@ -662,7 +662,7 @@ MonoBehaviour:
     - pos: {x: 1, y: 4}
       tile_Type: 1
     - pos: {x: 1, y: 5}
-      tile_Type: 2
+      tile_Type: 1
     - pos: {x: 1, y: 6}
       tile_Type: 1
     - pos: {x: 2, y: 0}
@@ -704,7 +704,7 @@ MonoBehaviour:
     - pos: {x: 4, y: 4}
       tile_Type: 1
     - pos: {x: 4, y: 5}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 4, y: 6}
       tile_Type: 1
     - pos: {x: 5, y: 0}
@@ -716,7 +716,7 @@ MonoBehaviour:
     - pos: {x: 5, y: 3}
       tile_Type: 1
     - pos: {x: 5, y: 4}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 5, y: 5}
       tile_Type: 1
     - pos: {x: 5, y: 6}
@@ -735,26 +735,16 @@ MonoBehaviour:
       tile_Type: 1
     - pos: {x: 6, y: 6}
       tile_Type: 1
-    citizenList: []
-    buildingList:
+    citizenList:
     - id: 0
-      pos: {x: 1, y: 1}
-      buildingType: 0
-      buildSize: {x: 1, y: 1}
-      isRead: 0
-      chitizen_normal_num: 5
-      chitizen_young_num: 0
-      chitizen_old_num: 0
-      chitizen_The_num: 0
-    - id: 1
-      pos: {x: 3, y: 3}
-      buildingType: 0
-      buildSize: {x: 1, y: 1}
-      isRead: 0
-      chitizen_normal_num: 5
-      chitizen_young_num: 0
-      chitizen_old_num: 0
-      chitizen_The_num: 0
+      citizenColor: 0
+      pos: {x: 2, y: 2}
+      citizen_Type: 4
+    - id: 0
+      citizenColor: 0
+      pos: {x: 4, y: 4}
+      citizen_Type: 4
+    buildingList: []
   - stageId: 6
     minClearTime: 80
     minRedCitizen: 2
@@ -762,7 +752,7 @@ MonoBehaviour:
     tileSize: {x: 7, y: 7}
     tileList:
     - pos: {x: 0, y: 0}
-      tile_Type: 2
+      tile_Type: 1
     - pos: {x: 0, y: 1}
       tile_Type: 1
     - pos: {x: 0, y: 2}
@@ -780,7 +770,7 @@ MonoBehaviour:
     - pos: {x: 1, y: 1}
       tile_Type: 1
     - pos: {x: 1, y: 2}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 1, y: 3}
       tile_Type: 1
     - pos: {x: 1, y: 4}
@@ -792,7 +782,7 @@ MonoBehaviour:
     - pos: {x: 2, y: 0}
       tile_Type: 1
     - pos: {x: 2, y: 1}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 2, y: 2}
       tile_Type: 1
     - pos: {x: 2, y: 3}
@@ -828,7 +818,7 @@ MonoBehaviour:
     - pos: {x: 4, y: 4}
       tile_Type: 1
     - pos: {x: 4, y: 5}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 4, y: 6}
       tile_Type: 1
     - pos: {x: 5, y: 0}
@@ -836,11 +826,11 @@ MonoBehaviour:
     - pos: {x: 5, y: 1}
       tile_Type: 1
     - pos: {x: 5, y: 2}
-      tile_Type: 2
+      tile_Type: 1
     - pos: {x: 5, y: 3}
       tile_Type: 1
     - pos: {x: 5, y: 4}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 5, y: 5}
       tile_Type: 1
     - pos: {x: 5, y: 6}
@@ -859,35 +849,16 @@ MonoBehaviour:
       tile_Type: 1
     - pos: {x: 6, y: 6}
       tile_Type: 1
-    citizenList: []
-    buildingList:
+    citizenList:
     - id: 0
+      citizenColor: 0
       pos: {x: 2, y: 2}
-      buildingType: 0
-      buildSize: {x: 2, y: 2}
-      isRead: 0
-      chitizen_normal_num: 5
-      chitizen_young_num: 0
-      chitizen_old_num: 0
-      chitizen_The_num: 0
+      citizen_Type: 4
     - id: 0
-      pos: {x: 5, y: 3}
-      buildingType: 0
-      buildSize: {x: 2, y: 2}
-      isRead: 0
-      chitizen_normal_num: 5
-      chitizen_young_num: 0
-      chitizen_old_num: 0
-      chitizen_The_num: 0
-    - id: 0
-      pos: {x: 2, y: 5}
-      buildingType: 0
-      buildSize: {x: 2, y: 2}
-      isRead: 0
-      chitizen_normal_num: 5
-      chitizen_young_num: 0
-      chitizen_old_num: 0
-      chitizen_The_num: 0
+      citizenColor: 0
+      pos: {x: 4, y: 4}
+      citizen_Type: 4
+    buildingList: []
   - stageId: 7
     minClearTime: 180
     minRedCitizen: 3
@@ -895,7 +866,7 @@ MonoBehaviour:
     tileSize: {x: 7, y: 7}
     tileList:
     - pos: {x: 0, y: 0}
-      tile_Type: 2
+      tile_Type: 1
     - pos: {x: 0, y: 1}
       tile_Type: 1
     - pos: {x: 0, y: 2}
@@ -911,13 +882,13 @@ MonoBehaviour:
     - pos: {x: 1, y: 0}
       tile_Type: 1
     - pos: {x: 1, y: 1}
-      tile_Type: 2
+      tile_Type: 1
     - pos: {x: 1, y: 2}
       tile_Type: 1
     - pos: {x: 1, y: 3}
       tile_Type: 1
     - pos: {x: 1, y: 4}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 1, y: 5}
       tile_Type: 1
     - pos: {x: 1, y: 6}
@@ -933,7 +904,7 @@ MonoBehaviour:
     - pos: {x: 2, y: 4}
       tile_Type: 1
     - pos: {x: 2, y: 5}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 2, y: 6}
       tile_Type: 1
     - pos: {x: 3, y: 0}
@@ -953,11 +924,11 @@ MonoBehaviour:
     - pos: {x: 4, y: 0}
       tile_Type: 1
     - pos: {x: 4, y: 1}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 4, y: 2}
       tile_Type: 1
     - pos: {x: 4, y: 3}
-      tile_Type: 2
+      tile_Type: 1
     - pos: {x: 4, y: 4}
       tile_Type: 1
     - pos: {x: 4, y: 5}
@@ -969,7 +940,7 @@ MonoBehaviour:
     - pos: {x: 5, y: 1}
       tile_Type: 1
     - pos: {x: 5, y: 2}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 5, y: 3}
       tile_Type: 1
     - pos: {x: 5, y: 4}
@@ -992,23 +963,18 @@ MonoBehaviour:
       tile_Type: 1
     - pos: {x: 6, y: 6}
       tile_Type: 1
-    citizenList: []
+    citizenList:
+    - id: 0
+      citizenColor: 0
+      pos: {x: 2, y: 4}
+      citizen_Type: 4
     buildingList:
     - id: 0
-      pos: {x: 1, y: 2}
-      buildingType: 1
-      buildSize: {x: 2, y: 3}
+      pos: {x: 4, y: 3}
+      buildingType: 0
+      buildSize: {x: 1, y: 1}
       isRead: 0
       chitizen_normal_num: 8
-      chitizen_young_num: 0
-      chitizen_old_num: 0
-      chitizen_The_num: 0
-    - id: 0
-      pos: {x: 4, y: 2}
-      buildingType: 0
-      buildSize: {x: 2, y: 3}
-      isRead: 0
-      chitizen_normal_num: 5
       chitizen_young_num: 0
       chitizen_old_num: 0
       chitizen_The_num: 0
@@ -1019,7 +985,7 @@ MonoBehaviour:
     tileSize: {x: 7, y: 7}
     tileList:
     - pos: {x: 0, y: 0}
-      tile_Type: 2
+      tile_Type: 1
     - pos: {x: 0, y: 1}
       tile_Type: 1
     - pos: {x: 0, y: 2}
@@ -1037,7 +1003,7 @@ MonoBehaviour:
     - pos: {x: 1, y: 1}
       tile_Type: 1
     - pos: {x: 1, y: 2}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 1, y: 3}
       tile_Type: 1
     - pos: {x: 1, y: 4}
@@ -1049,7 +1015,7 @@ MonoBehaviour:
     - pos: {x: 2, y: 0}
       tile_Type: 1
     - pos: {x: 2, y: 1}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 2, y: 2}
       tile_Type: 1
     - pos: {x: 2, y: 3}
@@ -1081,7 +1047,7 @@ MonoBehaviour:
     - pos: {x: 4, y: 2}
       tile_Type: 1
     - pos: {x: 4, y: 3}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 4, y: 4}
       tile_Type: 1
     - pos: {x: 4, y: 5}
@@ -1091,13 +1057,13 @@ MonoBehaviour:
     - pos: {x: 5, y: 0}
       tile_Type: 1
     - pos: {x: 5, y: 1}
-      tile_Type: 2
+      tile_Type: 1
     - pos: {x: 5, y: 2}
       tile_Type: 1
     - pos: {x: 5, y: 3}
       tile_Type: 1
     - pos: {x: 5, y: 4}
-      tile_Type: 1
+      tile_Type: 2
     - pos: {x: 5, y: 5}
       tile_Type: 1
     - pos: {x: 5, y: 6}
@@ -1116,32 +1082,18 @@ MonoBehaviour:
       tile_Type: 1
     - pos: {x: 6, y: 6}
       tile_Type: 1
-    citizenList: []
+    citizenList:
+    - id: 0
+      citizenColor: 0
+      pos: {x: 3, y: 3}
+      citizen_Type: 4
     buildingList:
     - id: 0
-      pos: {x: 1, y: 2}
-      buildingType: 1
-      buildSize: {x: 2, y: 3}
+      pos: {x: 4, y: 5}
+      buildingType: 0
+      buildSize: {x: 1, y: 1}
       isRead: 0
       chitizen_normal_num: 8
-      chitizen_young_num: 0
-      chitizen_old_num: 0
-      chitizen_The_num: 0
-    - id: 0
-      pos: {x: 3, y: 4}
-      buildingType: 0
-      buildSize: {x: 2, y: 3}
-      isRead: 0
-      chitizen_normal_num: 5
-      chitizen_young_num: 0
-      chitizen_old_num: 0
-      chitizen_The_num: 0
-    - id: 0
-      pos: {x: 5, y: 2}
-      buildingType: 0
-      buildSize: {x: 2, y: 3}
-      isRead: 0
-      chitizen_normal_num: 5
       chitizen_young_num: 0
       chitizen_old_num: 0
       chitizen_The_num: 0

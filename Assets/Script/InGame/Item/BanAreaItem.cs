@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
@@ -99,10 +100,10 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
         //tilePos += new Vector2(26, -21);
         banAreaObj.transform.position = new Vector3(tilePos.x, tilePos.y, banAreaObj.transform.position.z);
 
-        int xMinVaue = (int)tile.pos.x - 2;
-        int xMaxVaue = (int)tile.pos.x + 2;
-        int yMinVaue = (int)tile.pos.y - 2;
-        int yMaxVaue = (int)tile.pos.y + 2;
+        int xMinVaue = (int)tile.pos.x - 1;
+        int xMaxVaue = (int)tile.pos.x + 1;
+        int yMinVaue = (int)tile.pos.y - 1;
+        int yMaxVaue = (int)tile.pos.y + 1;
 
         
         //금지 구역 지정
@@ -115,10 +116,9 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
                 if (x < 0 || y < 0 || x >= tileController.x_max_value || y >= tileController.y_max_value)
                     continue;
 
-                banTileList.Add(tileController.Map[x, y]);
+                banTileList.Add(new Node(x,y));
             }
         }
-        
 
         if (banTileList.Count == null)
             return;
@@ -135,15 +135,13 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
         //금지구역에 있는 주민 체크
         foreach (var node in banTileList)
         {
-            Citizen citizen = tileController.citizenList.Find(data => data.currentTile.pos.x == node.X && data.currentTile.pos.y == node.Y);
+            Citizen citizen = tileController.citizenList.FirstOrDefault(data => data.currentTile.pos.x == node.X && data.currentTile.pos.y == node.Y);
 
             if (citizen != null)
             {
-                //citizen.ChangePattern(Ballone.Move);
+                citizen.BanAreaOn(tile);
             }
         }
-
-        SoundManager.Instance.PlaySe(SeEnum.UseBanner);
     }
 
     void Update()

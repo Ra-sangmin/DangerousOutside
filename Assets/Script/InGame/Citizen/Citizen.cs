@@ -20,6 +20,7 @@ public class Citizen : MonoBehaviour
     [System.NonSerialized] public bool cleanerOn;
     bool initOn;
     bool moveOn;
+    public bool waitOn;
 
     Queue<Tile> targetMoveList = new Queue<Tile>();
     [System.NonSerialized] public Tile currentTile;
@@ -74,6 +75,22 @@ public class Citizen : MonoBehaviour
         animator.SetBool("stop", stop);
         animator.SetBool("back", back);
         animator.SetBool("side", side);
+    }
+
+    public void BanAreaOn(Tile tile)
+    {
+        moveTween.Kill();
+        moveOn = true;
+        waitOn = true;
+
+        Debug.LogWarning(currentTile.pos.x + " , " + currentTile.pos.y);
+        StartCoroutine(BanAreaOnCoroutine(tile));
+    }
+
+    IEnumerator BanAreaOnCoroutine(Tile tile)
+    {
+        yield return new WaitForEndOfFrame();
+        ResetPos(tile);
     }
 
     public void ResetPos(Tile tile)
@@ -133,7 +150,7 @@ public class Citizen : MonoBehaviour
 
     void MoveTimeCheck()
     {
-        if (moveOn)
+        if (moveOn || waitOn)
             return;
 
         if (targetMoveList != null && targetMoveList.Count > 0)
