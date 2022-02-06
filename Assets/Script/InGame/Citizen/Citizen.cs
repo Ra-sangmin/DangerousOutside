@@ -23,6 +23,7 @@ public class Citizen : MonoBehaviour
     public bool waitOn;
 
     Queue<Tile> targetMoveList = new Queue<Tile>();
+    [System.NonSerialized] public Tile targetTile;
     [System.NonSerialized] public Tile currentTile;
 
     float currentMoveDelay;
@@ -83,7 +84,6 @@ public class Citizen : MonoBehaviour
         moveOn = true;
         waitOn = true;
 
-        Debug.LogWarning(currentTile.pos.x + " , " + currentTile.pos.y);
         StartCoroutine(BanAreaOnCoroutine(tile));
     }
 
@@ -91,6 +91,12 @@ public class Citizen : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         ResetPos(tile);
+    }
+
+    public void BanAreaOff()
+    {
+        moveOn = false;
+        waitOn = false;
     }
 
     public void ResetPos(Tile tile)
@@ -238,10 +244,10 @@ public class Citizen : MonoBehaviour
 
         moveOn = true;
 
-        currentTile = targetTile;
+        this.targetTile = targetTile;
 
         Vector2 curentPos = transform.transform.position;
-        Vector2 targetPos = currentTile.transform.position;
+        Vector2 targetPos = targetTile.transform.position;
 
         bool moveUpOn = curentPos.y < targetPos.y;
         bool moverightOn = curentPos.x < targetPos.x;
@@ -252,9 +258,13 @@ public class Citizen : MonoBehaviour
         Quaternion quaternion = moverightOn == true ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(Vector3.zero);
         animator.transform.rotation = quaternion;
 
-        moveTween = transform.DOMove(currentTile.transform.position, moveSpeed)
+        moveTween = transform.DOMove(targetTile.transform.position, moveSpeed)
                                 .SetEase(Ease.Linear)
-                                .OnComplete(completeEvent);
+                                .OnComplete(()=> 
+                                {
+                                    this.currentTile = this.targetTile;
+                                    completeEvent();
+                                });
         Observable
             .Timer(TimeSpan.FromSeconds(moveSpeed * 0.5f))
             .Subscribe(_ => TileCheck())

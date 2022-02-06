@@ -19,6 +19,8 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
     {
         base.Init();
         needCost = 2;
+
+        tileController.citizenAddEventOn += BanAreaCitizenCheck;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -130,17 +132,34 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
         banAreaData.deleteTime = 10;
         banAreaData.banTileList = banTileList;
         banAreaData.banAreaObj = banAreaObj.gameObject;
+        banAreaData.centerTile = tile;
         banAreaDataList.Add(banAreaData);
 
-        //금지구역에 있는 주민 체크
-        foreach (var node in banTileList)
-        {
-            Citizen citizen = tileController.citizenList.FirstOrDefault(data => data.currentTile.pos.x == node.X && data.currentTile.pos.y == node.Y);
+        BanAreaCitizenCheck();
+    }
 
-            if (citizen != null)
+    void BanAreaCitizenCheck()
+    {
+        //금지구역에 있는 주민 체크
+        foreach (var banAreaData in banAreaDataList)
+        {
+            foreach (var node in banAreaData.banTileList)
             {
-                citizen.BanAreaOn(tile);
+                List<Citizen> citizenList = tileController.citizenList.Where(data => data.currentTile.pos.x == node.X && data.currentTile.pos.y == node.Y).ToList();
+
+                if (citizenList != null && citizenList.Count != 0)
+                {
+                    foreach (var citizen in citizenList)
+                    {
+                        if (citizen != null)
+                        {
+                            citizen.BanAreaOn(banAreaData.centerTile);
+                        }
+                        
+                    }
+                }
             }
+            
         }
     }
 
@@ -163,6 +182,21 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
                 Destroy(banAreaData.banAreaObj);
                 tileController.banTileList.RemoveAll(i => banAreaData.banTileList.Contains(i));
                 banAreaDataList.Remove(banAreaData);
+
+                foreach (var node in banAreaData.banTileList)
+                {
+                    List<Citizen> citizenList = tileController.citizenList.Where(data => data.currentTile.pos.x == node.X && data.currentTile.pos.y == node.Y).ToList();
+
+                    if (citizenList != null && citizenList.Count != 0)
+                    {
+                        foreach (var citizen in citizenList)
+                        {
+                            citizen.BanAreaOff();
+                        }
+                    }
+                }
+                BanAreaCitizenCheck();
+
             }
                 
             break;
@@ -174,5 +208,6 @@ public class BanAreaData
 {
     public float deleteTime;
     public List<Node> banTileList = new List<Node>();
+    public Tile centerTile;
     public GameObject banAreaObj;
 }

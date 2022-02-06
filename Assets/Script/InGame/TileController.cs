@@ -45,6 +45,8 @@ public class TileController : MonoBehaviour
     [SerializeField] List<Image> bgList = new List<Image>();
     [SerializeField] List<RectTransform> patternList = new List<RectTransform>();
 
+    public UnityAction citizenAddEventOn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -271,6 +273,11 @@ public class TileController : MonoBehaviour
         citizenOBJ.ChangeColor(citizen.citizen_color);
 
         citizenList.Add(citizenOBJ);
+
+        if (citizenAddEventOn != null)
+        {
+            citizenAddEventOn();
+        }
     }
 
     public Building BuildingCreate(BuildingSaveData building)
