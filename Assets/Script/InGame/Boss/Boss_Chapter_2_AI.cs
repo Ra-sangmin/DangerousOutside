@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class Boss_Chapter_2_AI : Base_Boss_Chapter
 {
+    [SerializeField] TileController tileController;
+
     [SerializeField] Animator bossAnim;
     [SerializeField] Animator waveAnim;
     [SerializeField] Animator barAnim;
+
+    bool waveDelayOn = false;
+    float waveDelay = 0;
+    int waveType = 0;
+
+    public bool barigateOpen = false;
 
     // Start is called before the first frame update
     public override void Init()
@@ -26,15 +34,20 @@ public class Boss_Chapter_2_AI : Base_Boss_Chapter
 
         barAnim.gameObject.SetActive(true);
         barAnim.Play("Chapter2_boss_bar_appear");
+
+        waveDelay = 10;
+        waveDelayOn = true;
     }
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //{
-        //    bossAnim.Play("Chapter2_boss_bump");
-        //    waveAnim.Play("Chapter2_stage_wave_boss");
-        //}
+        WaveDelayCheck();
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            barAnim.Play("Chapter2_boss_bar_down");
+            barigateOpen = true;
+        }
 
         //if (Input.GetKeyDown(KeyCode.Alpha2))
         //{
@@ -80,4 +93,46 @@ public class Boss_Chapter_2_AI : Base_Boss_Chapter
         //}
     }
 
+    void WaveDelayCheck()
+    {
+        if (waveDelayOn == false)  
+            return;
+
+        waveDelay -= Time.deltaTime;
+
+        if (waveDelay < 0)
+        {
+            waveDelay = 10;
+            StartCoroutine(WavePlayOn());
+        }
+    }
+
+    IEnumerator WavePlayOn()
+    {
+        string animName = "Chapter2_stage_wave_boss";
+        waveAnim.Play(animName);
+
+        string bossAnimName = barigateOpen ? "Chapter2_boss_appear" : "Chapter2_boss_bump";
+        bossAnim.Play(bossAnimName);
+
+        yield return new WaitForSeconds(1);
+
+        if (barigateOpen)
+        {
+            CitizenSaveData citizenData = new CitizenSaveData();
+
+            citizenData.citizen_Type = Citizen_Type.Tourist;
+            citizenData.pos.x = 4;
+            citizenData.pos.y = 0;
+            citizenData.citizenColor = CitizenColor.Red;
+
+            tileController.CitizenCreate(citizenData);
+        }
+
+        
+
+        Debug.LogWarning("clear");
+    }
+
+    
 }

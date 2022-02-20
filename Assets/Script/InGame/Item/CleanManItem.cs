@@ -58,15 +58,21 @@ public class CleanManItem : BaseItem, IPointerDownHandler, IDragHandler, IPointe
         {
             for (int y = 0; y < tileController.y_max_value; y++)
             {
-                Vector2 tilePos = tileController.tiles[x, y].transform.position;
+                Tile tempTile = tileController.tiles[x, y];
 
-                float tempDistance = Vector2.Distance(worldPos, tilePos);
-
-                if (distance > tempDistance)
+                if (tempTile != null)
                 {
-                    distance = tempDistance;
-                    tile = tileController.tiles[x, y];
+                    Vector2 tilePos = tempTile.transform.position;
+
+                    float tempDistance = Vector2.Distance(worldPos, tilePos);
+
+                    if (distance > tempDistance)
+                    {
+                        distance = tempDistance;
+                        tile = tempTile;
+                    }
                 }
+                
             }
         }
         
