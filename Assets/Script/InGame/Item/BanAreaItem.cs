@@ -51,9 +51,6 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
         Vector2 pos = banAreaObj.anchoredPosition3D;
         pos += eventData.delta;
         banAreaObj.anchoredPosition3D = pos;
-
-        //Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
-        //banAreaObj.transform.position = worldPos;
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -61,7 +58,7 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
         if (!CheckCost() || banAreaObj == null)
             return;
 
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
+        Vector2 worldPos = banAreaObj.transform.position;
         Tile tile = null;
         float distance = 100;
 
@@ -99,7 +96,6 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
         AddCost();
 
         Vector2 tilePos = tile.transform.position;
-        //tilePos += new Vector2(26, -21);
         banAreaObj.transform.position = new Vector3(tilePos.x, tilePos.y, banAreaObj.transform.position.z);
 
         int xMinVaue = (int)tile.pos.x - 1;
@@ -107,7 +103,6 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
         int yMinVaue = (int)tile.pos.y - 1;
         int yMaxVaue = (int)tile.pos.y + 1;
 
-        
         //금지 구역 지정
         List<Node> banTileList = new List<Node>();
         

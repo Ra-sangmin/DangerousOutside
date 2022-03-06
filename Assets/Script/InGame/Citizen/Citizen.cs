@@ -84,6 +84,7 @@ public class Citizen : MonoBehaviour
         moveOn = true;
         waitOn = true;
 
+        targetMoveList = new Queue<Tile>();
         StartCoroutine(BanAreaOnCoroutine(tile));
     }
 
@@ -370,25 +371,27 @@ public class Citizen : MonoBehaviour
 
     List<Vector2> GetTileList(Vector2 startPos , Vector2 endPos)
     {
-
         return null;
     }
 
     public void TileCheck()
     {
-        if (currentTile.tile_Type == Tile_Type.Blue)
+        if (targetTile == null)
+            return;
+        
+        if (targetTile.tile_Type == Tile_Type.Blue)
         {
             if (citizen_color == CitizenColor.Red)
             {
                 ChangeColor(CitizenColor.White);
-                currentTile.TileChange(Tile_Type.White);
+                targetTile.TileChange(Tile_Type.White);
             }
             else if (citizen_color == CitizenColor.White)
             {
                 ChangeColor(CitizenColor.Blue);
             }
         }
-        else if (currentTile.tile_Type == Tile_Type.Red)
+        else if (targetTile.tile_Type == Tile_Type.Red)
         {
             if (citizen_color == CitizenColor.Blue)
             {
@@ -399,11 +402,11 @@ public class Citizen : MonoBehaviour
                 ChangeColor(CitizenColor.Red);
             }
         }
-        else if (currentTile.tile_Type == Tile_Type.White)
+        else if (targetTile.tile_Type == Tile_Type.White)
         {
             if (citizen_color == CitizenColor.Red)
             {
-                currentTile.TileChange(Tile_Type.Red);
+                targetTile.TileChange(Tile_Type.Red);
             }
         }
     }
