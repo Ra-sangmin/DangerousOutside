@@ -19,6 +19,8 @@ public class ResultWinPopup : MonoBehaviour
     [SerializeField] AtlasImage minTimeOnLine;
     [SerializeField] AtlasImage minRedCntLine;
 
+    [SerializeField] RectTransform nextBtn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +72,11 @@ public class ResultWinPopup : MonoBehaviour
 
 
         StageIconDataManager.Ins.StarCntSet(GameManager.Ins.selectStageId, starCnt);
+
+        if (GameManager.Ins.selectStageId == 3 || GameManager.Ins.selectStageId == 4)
+        {
+            nextBtn.gameObject.SetActive(false);
+        }
     }
 
     void TextReset(Text textObj, string str,float delay)

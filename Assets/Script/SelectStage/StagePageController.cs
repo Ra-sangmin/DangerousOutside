@@ -66,6 +66,18 @@ public class StagePageController : MonoBehaviour
 
         SoundManager.Instance.PlaySe(SeEnum.Touch);
 
+        if (selectStageData.id > 0 )
+        {
+            int selectId = selectStageData.id - 1;
+            StageIconDataUserData userData = StageIconDataManager.Ins.GetStageData(selectId).stageIconDataUserData;
+
+            if (userData.playOn == false)
+            {
+                WarningManager.Instance.WarningSet("이전 스테이지를 클리어 하십시오.");
+                return;
+            }
+        }
+
         this.stageData = selectStageData;
 
         StageSaveData stageSaveData = stageAllSaveData.stageList.Find(data => data.stageId == selectStageData.id);

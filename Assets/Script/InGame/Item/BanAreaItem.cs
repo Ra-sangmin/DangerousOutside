@@ -18,7 +18,6 @@ public class BanAreaItem : BaseItem, IPointerDownHandler, IDragHandler, IPointer
     public override void Init()
     {
         base.Init();
-        needCost = 2;
 
         tileController.citizenAddEventOn += BanAreaCitizenCheck;
     }

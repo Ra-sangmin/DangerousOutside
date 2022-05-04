@@ -120,6 +120,9 @@ public class SelectStageController : MonoBehaviour
 
     public void NextBtnClick(bool nextOn)
     {
+        WarningManager.Instance.DemoWarningOn();
+        return;
+
         chapterIndex = nextOn ? chapterIndex + 1 : chapterIndex - 1;
 
         AllDeActive();

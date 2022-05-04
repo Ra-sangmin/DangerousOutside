@@ -28,6 +28,12 @@ public class MainMenuBar : MonoBehaviour
     
     public void MainTabBtnClick(int status)
     {
+        if (status == 0 || status == 2)
+        {
+            WarningManager.Instance.DemoWarningOn();
+            return;
+        }
+
         mainTabStatus = status;
         MainTapChange();
     }

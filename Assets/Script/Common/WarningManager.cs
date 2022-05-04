@@ -28,6 +28,11 @@ public class WarningManager : MonoBehaviour
 		}
 	}
 
+	public void DemoWarningOn()
+	{
+		WarningSet("데모버젼에는 지원하지 않습니다.");
+	}
+
 
     public void WarningSet(string msg)
     {

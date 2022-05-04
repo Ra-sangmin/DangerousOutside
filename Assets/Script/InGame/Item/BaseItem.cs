@@ -60,19 +60,19 @@ public class BaseItem : MonoBehaviour
         {
             case ItemState.GiftCntAdd:
                 titleTextStr = "물자공급";
-                needCost = 0; break;
+                needCost = 11; break;
             case ItemState.BanArea:
                 titleTextStr = "금지구역";
-                needCost = 0; break;
+                needCost = 11; break;
             case ItemState.CleanMan:
                 titleTextStr = "방역이소환";
                 needCost = 4; break;
             case ItemState.ForceGoHome:
                 titleTextStr = "강제귀가";
-                needCost = 0; break;
+                needCost = 11; break;
             case ItemState.Delivery:
                 titleTextStr = "로켓배송";
-                needCost = 0; break;
+                needCost = 11; break;
         }
 
         if (titleText != null)
