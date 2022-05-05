@@ -93,9 +93,8 @@ public class DescriptionManager : MonoBehaviour
     //게임시작
     void GameStart()
     {
-        objDescriptionPanel.SetActive(false);
-        objInGameController.Init();
-
         GameManager.Ins.tutorialOn = false;
+        objInGameController.Init();
+        objDescriptionPanel.SetActive(false);
     }
 }

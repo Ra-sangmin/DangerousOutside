@@ -157,6 +157,9 @@ public class GameManager
 
         string targetSceneName = "InGame";
 
+        //1스테이지만 튜토리얼 반복
+        GameManager.ins.tutorialOn = this.selectStageId == 0;
+
         if (tutorialSkip == false)
         {
             if (tutorialState == 0 && this.selectStageId >= 0)
