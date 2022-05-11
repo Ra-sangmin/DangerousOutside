@@ -64,6 +64,12 @@ public class SelectStageController : MonoBehaviour
     {
         difficultyStatus = index;
 
+        if (index != 0)
+        {
+            WarningManager.Instance.DemoWarningOn();
+            return;
+        }
+
         float xPos = toggleList[difficultyStatus].GetComponent<RectTransform>().anchoredPosition3D.x;
         difficultyIcon.DOAnchorPosX(xPos, 0.2f);
 
@@ -88,7 +94,7 @@ public class SelectStageController : MonoBehaviour
         IdleAnimPlay();
         BGPosSet();
 
-        if (GameManager.Ins.clearOn)
+        if (GameManager.Ins.selectStageId != -1)
         {
             EnterBtnClick();
         }
