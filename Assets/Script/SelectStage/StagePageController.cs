@@ -71,11 +71,11 @@ public class StagePageController : MonoBehaviour
             int selectId = selectStageData.id - 1;
             StageIconDataUserData userData = StageIconDataManager.Ins.GetStageData(selectId).stageIconDataUserData;
 
-            if (userData.playOn == false)
-            {
-                WarningManager.Instance.WarningSet("이전 스테이지를 클리어 하십시오.");
-                return;
-            }
+            //if (userData.playOn == false)
+            //{
+            //    WarningManager.Instance.WarningSet("이전 스테이지를 클리어 하십시오.");
+            //    return;
+            //}
         }
 
         this.stageData = selectStageData;

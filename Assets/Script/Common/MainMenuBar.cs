@@ -11,8 +11,10 @@ public class MainMenuBar : MonoBehaviour
     [SerializeField] List<RectTransform> mainMenuBtnList = new List<RectTransform>();
 
     [SerializeField] RectTransform selectOnImage;
-
+    
     public SettingPopup settingPopup;
+
+    [SerializeField] RectTransform backBtnParantObj;
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +30,6 @@ public class MainMenuBar : MonoBehaviour
     
     public void MainTabBtnClick(int status)
     {
-        if (status == 0 || status == 2)
-        {
-            WarningManager.Instance.DemoWarningOn();
-            return;
-        }
-
         mainTabStatus = status;
         MainTapChange();
     }
@@ -56,6 +52,8 @@ public class MainMenuBar : MonoBehaviour
         //{
         //    mainMenuPanelList[1].GetComponent<SelectStageController>().IdleAnimPlay();
         //}
+
+        backBtnParantObj.gameObject.SetActive(mainTabStatus == 1);
     }
 
 

@@ -64,12 +64,6 @@ public class SelectStageController : MonoBehaviour
     {
         difficultyStatus = index;
 
-        if (index != 0)
-        {
-            WarningManager.Instance.DemoWarningOn();
-            return;
-        }
-
         float xPos = toggleList[difficultyStatus].GetComponent<RectTransform>().anchoredPosition3D.x;
         difficultyIcon.DOAnchorPosX(xPos, 0.2f);
 
@@ -126,9 +120,6 @@ public class SelectStageController : MonoBehaviour
 
     public void NextBtnClick(bool nextOn)
     {
-        WarningManager.Instance.DemoWarningOn();
-        return;
-
         chapterIndex = nextOn ? chapterIndex + 1 : chapterIndex - 1;
 
         AllDeActive();
