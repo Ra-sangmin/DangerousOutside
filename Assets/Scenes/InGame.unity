@@ -20751,6 +20751,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chapter2_Stage_empty
       objectReference: {fileID: 0}
+    - target: {fileID: 7416439850529030510, guid: 988f13b1268a5df4196b1df3775d2425,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416439850774470115, guid: 988f13b1268a5df4196b1df3775d2425,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 227
+      objectReference: {fileID: 0}
     - target: {fileID: 7416439852115154392, guid: 988f13b1268a5df4196b1df3775d2425,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50712,7 +50722,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b89afabf9f610fe4ca84556eeaaf5d97, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 164afd3f658e7ac40b710d8621fdba85, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
