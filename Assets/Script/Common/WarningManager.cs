@@ -33,8 +33,13 @@ public class WarningManager : MonoBehaviour
 		WarningSet("데모버젼에는 지원하지 않습니다.");
 	}
 
+	public void NotReadyWarningOn()
+	{
+		WarningSet("현재 준비 중입니다.");
+	}
 
-    public void WarningSet(string msg)
+
+	public void WarningSet(string msg)
     {
 		GameObject obj = Instantiate(Resources.Load("Common/pnlWarning"),transform) as GameObject;
 		Text textObj = obj.transform.Find("Text").GetComponent<Text>();
