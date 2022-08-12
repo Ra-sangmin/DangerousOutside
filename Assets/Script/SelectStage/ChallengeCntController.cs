@@ -14,8 +14,6 @@ public class ChallengeCntController : MonoBehaviour
 
     bool fullCountOn = false;
 
-    
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,14 +34,11 @@ public class ChallengeCntController : MonoBehaviour
     void Init()
     {
         GameManager.Ins.DateTimeSet();
-        
+
         fullCountOn = GameManager.Ins.challengeCurrentCnt >= GameManager.Ins.challengeMaxCount;
 
         TextReSet();
     }
-
-    
-    
 
     void SecOn()
     {
@@ -60,8 +55,6 @@ public class ChallengeCntController : MonoBehaviour
 
         TextReSet();
     }
-
-    
 
     void TextReSet()
     {
@@ -82,20 +75,14 @@ public class ChallengeCntController : MonoBehaviour
 
     void AddTimeReset()
     {
-        
         DateTime now = DateTime.Now;
 
-        //int min = (int)(addTimeCurrentSecTime / 60);
-        //int sec = (int)(addTimeCurrentSecTime % 60);
-
-        
         int min = (GameManager.Ins.nextChageDT - now).Minutes;
         int sec = (GameManager.Ins.nextChageDT - now).Seconds;
 
         countAddTimerText.text = string.Format("{0:D1}:{1:D2}", min, sec);
     }
 
-    
     void FullCountCheck()
     {
         fullCountOn = GameManager.Ins.challengeCurrentCnt == GameManager.Ins.challengeMaxCount;

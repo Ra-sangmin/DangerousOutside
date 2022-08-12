@@ -96,6 +96,12 @@ public class SelectStageController : MonoBehaviour
 
     void GameStartOn()
     {
+        if (GameManager.Ins.challengeCurrentCnt <= 0)
+        {
+            WarningManager.Instance.WarningSet("도전 횟수가 부족합니다.");
+            return;
+        }
+
         GameManager.Ins.StageStartOn(stagePageController.stageData.id);        
     }
 

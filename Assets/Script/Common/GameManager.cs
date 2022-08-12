@@ -53,7 +53,7 @@ public class GameManager
         vibrationOn = PlayerPrefs.GetInt(vibrationOnkey, 1) == 0 ? false : true;
         tutorialState = PlayerPrefs.GetInt(tutorialStatekey, 0);
         tutorialState = 5;
-        challengeCurrentCnt = 5;
+        //challengeCurrentCnt = 5;
     }
 
     public void VibrationSet(bool value)
@@ -72,13 +72,15 @@ public class GameManager
     public void NextChageDTAdd()
     {
         //도전횟수1당 필요 시간
-        int addSec = 10;
+        int addSec = 60 * 3;
         nextChageDT = nextChageDT.AddSeconds(addSec);
     }
 
     public void DateTimeSet()
     {
-        challengeCurrentCnt = PlayerPrefs.GetInt(challengeCurrentCntkey, 0);
+        //PlayerPrefs.DeleteAll();
+
+        challengeCurrentCnt = PlayerPrefs.GetInt(challengeCurrentCntkey, 5);
 
         string strValue = PlayerPrefs.GetString(nextChageTimekey, "-1");
         long nextChagetick = long.Parse(strValue);
@@ -90,11 +92,11 @@ public class GameManager
         {
             return;
         }
-        //도전횟수 정보가 없다며
-        else if (nextChagetick == -1)
-        {
-            challengeCurrentCnt = 5;
-        }
+        ////도전횟수 정보가 없다며
+        //else if (nextChagetick == -1)
+        //{
+        //    challengeCurrentCnt = 5;
+        //}
         else
         {
             nextChageDT = new DateTime(nextChagetick);
