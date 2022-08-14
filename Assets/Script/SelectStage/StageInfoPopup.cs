@@ -11,7 +11,7 @@ public class StageInfoPopup : MonoBehaviour
     [SerializeField] Text mission_0_Text;
     [SerializeField] Text mission_1_Text;
 
-    [SerializeField] private List<AtlasImage> starIconList = new List<AtlasImage>();
+    [SerializeField] private List<Image> starIconList = new List<Image>();
 
     // Start is called before the first frame update
     void Start()
