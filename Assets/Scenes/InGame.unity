@@ -54815,7 +54815,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7818767244506589589}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 515964638}
+        m_MethodName: ContinueOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &7818767244524722496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55537,7 +55548,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7818767244711091222}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 515964638}
+        m_MethodName: RestartOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &7818767244711091689
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -58666,7 +58688,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7818767245796603123}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 515964638}
+        m_MethodName: GoStageOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!222 &7818767245796603121
 CanvasRenderer:
   m_ObjectHideFlags: 0
