@@ -15,16 +15,15 @@ MonoBehaviour:
   tutorialImageDataList:
   - stageID: 0
     imageList:
-    - {fileID: 21300000, guid: b13b22f32ac6ca44db5792f6c6a759df, type: 3}
-    - {fileID: 21300000, guid: dd225216907fdc14086345273bfe6af8, type: 3}
-    - {fileID: 21300000, guid: ccd5ca0573901264ea84ed70ff9c4710, type: 3}
-    - {fileID: 21300000, guid: aa0e8e6d452f793418c427049bd4aa6b, type: 3}
+    - {fileID: 21300000, guid: 4ceccc3f97180f141a99cb24a22af4d2, type: 3}
+    - {fileID: 21300000, guid: 9f28395810e8fd947ab0e73caf433644, type: 3}
+    - {fileID: 21300000, guid: 3e555d7c529e3e84a8675229ebf3dfd1, type: 3}
   - stageID: 1
     imageList:
-    - {fileID: 21300000, guid: 62b28b83e305d8342b98f9e3a5298b22, type: 3}
-    - {fileID: 21300000, guid: 6f970c97627f2f44fbff964d690a10d0, type: 3}
-    - {fileID: 21300000, guid: 901b7922cea61144d88d5ed772e12780, type: 3}
-    - {fileID: 21300000, guid: 436725de1c6e9cd46a7b8793508c2d1c, type: 3}
+    - {fileID: 21300000, guid: 7de93f365f444fd4cab3af779db29840, type: 3}
+    - {fileID: 21300000, guid: ca3e041274961974392a2ba01d75ebe7, type: 3}
+    - {fileID: 21300000, guid: 1df64c98667da30469dae379eb9c08dc, type: 3}
+    - {fileID: 21300000, guid: dcd52dc134387864f9a9223c7a227d80, type: 3}
   - stageID: 2
     imageList:
     - {fileID: 21300000, guid: 2f4ca044d04445540b74a686d2743237, type: 3}

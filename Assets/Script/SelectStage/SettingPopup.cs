@@ -30,7 +30,7 @@ public class SettingPopup : MonoBehaviour
     public void DataSet()
     {
         int stageNum = GameManager.Ins.selectStageId + 1;
-        stageNumText.text = string.Format("스테이지 {0}", stageNum);
+        //stageNumText.text = string.Format("스테이지 {0}", stageNum);
     }
 
     void ToggleSet()
