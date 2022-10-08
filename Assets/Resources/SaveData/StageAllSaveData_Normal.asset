@@ -1202,16 +1202,7 @@ MonoBehaviour:
     - pos: {x: 6, y: 6}
       tile_Type: 1
     citizenList: []
-    buildingList:
-    - id: 0
-      pos: {x: 1, y: 1}
-      buildingType: 0
-      buildSize: {x: 2, y: 2}
-      isRead: 0
-      chitizen_normal_num: 0
-      chitizen_young_num: 0
-      chitizen_old_num: 0
-      chitizen_The_num: 0
+    buildingList: []
   - stageId: 10
     minClearTime: 200
     minRedCitizen: 3

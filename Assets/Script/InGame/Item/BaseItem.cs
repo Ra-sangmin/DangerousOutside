@@ -60,10 +60,10 @@ public class BaseItem : MonoBehaviour
         {
             case ItemState.GiftCntAdd:
                 titleTextStr = "물자공급";
-                needCost = 11; break;
+                needCost = 5; break;
             case ItemState.BanArea:
                 titleTextStr = "금지구역";
-                needCost = 11; break;
+                needCost = 2; break;
             case ItemState.CleanMan:
                 titleTextStr = "방역이소환";
                 needCost = 4; break;
