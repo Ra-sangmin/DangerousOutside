@@ -151,22 +151,22 @@ public class InGameController : MonoBehaviour
         switch (GameManager.Ins.selectStageId)
         {
             case 0 :
-                saveItem = ItemState.GiftCntAdd;
+                saveItem = ItemState.CleanMan; 
                 break;
             case 1:
-                saveItem = ItemState.CleanMan;
+                saveItem = ItemState.GiftCntAdd;
                 break;
             case 2:
-                saveItem = ItemState.Cleaner;
+                saveItem = ItemState.Delivery;
+                //saveItem = ItemState.Cleaner;
                 break;
             case 3:
-                saveItem = ItemState.BanArea;
-                break;
-            case 4:
                 saveItem = ItemState.ForceGoHome;
                 break;
+            case 4:
+                saveItem = ItemState.BanArea; 
+                break;
             case 5:
-                saveItem = ItemState.Delivery;
                 break;
         }
 

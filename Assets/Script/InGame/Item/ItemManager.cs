@@ -22,7 +22,7 @@ public class ItemManager
 
     private ItemManager()
     {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 
         DataSet();
     }
@@ -47,8 +47,8 @@ public class ItemManager
 
     public bool GetItemOnData(ItemState itemState)
     {
-        return true;
-        //return itemOnDataList[(int)itemState];
+        //return true;
+        return itemOnDataList[(int)itemState];
     }
 
     public void SaveItemOnData(ItemState itemState)
