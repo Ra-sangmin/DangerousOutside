@@ -58,10 +58,19 @@ public class SelectStageController : MonoBehaviour
                 DifficultyToggleChange(index);
             });
         }
+
+        DifficultyToggleChange(0);
     }
 
     void DifficultyToggleChange(int index)
     {
+        if (index > 0)
+        {
+            WarningManager.Instance.NotReadyWarningOnAddStr("난이도 조정 기능은 ");
+            toggleList[0].isOn = true;
+            return;
+        }
+
         difficultyStatus = index;
 
         float xPos = toggleList[difficultyStatus].GetComponent<RectTransform>().anchoredPosition3D.x;

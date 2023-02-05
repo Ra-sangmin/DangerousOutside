@@ -70,7 +70,6 @@ public class ResultWinPopup : MonoBehaviour
         animList[2].SetBool("success", minRedCntOn);
         animList[2].SetInteger("index", 2);
 
-
         StageIconDataManager.Ins.StarCntSet(GameManager.Ins.selectStageId, starCnt);
 
         if (GameManager.Ins.selectStageId == 3 || GameManager.Ins.selectStageId == 4)

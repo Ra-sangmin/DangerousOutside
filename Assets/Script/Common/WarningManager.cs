@@ -33,11 +33,16 @@ public class WarningManager : MonoBehaviour
 		WarningSet("데모버젼에는 지원하지 않습니다.");
 	}
 
+	public void NotReadyWarningOnAddStr(string addStr)
+	{
+		string warningStr = string.Format("{0} 현재 준비 중입니다.", addStr);
+		WarningSet(warningStr);
+	}
+
 	public void NotReadyWarningOn()
 	{
 		WarningSet("현재 준비 중입니다.");
 	}
-
 
 	public void WarningSet(string msg)
     {
